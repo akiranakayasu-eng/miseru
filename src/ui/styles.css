@@ -682,7 +682,7 @@ input[type='range'] { width: 100%; accent-color: var(--accent); }
   .wheel-row .wheel { order: -1; width: min(100%, 220px); margin: 0 auto; }
   .wheel-row .detail { width: 100%; }
 }
-/* 記号の位置合わせ 2 回目（測った残りのずれ） */
+/* 記号の位置合わせ（測った残りのずれ） */
 .ico.diamond { --ico-y: -2px; }
 .ico.redo { --ico-y: -3px; }
 /* ヘッダーの miseru と副題 2 段を全体に若干大きく（28 → 31px、8 → 9px） */
@@ -774,7 +774,7 @@ input[type='range'] { width: 100%; accent-color: var(--accent); }
 .brand { align-items: center; gap: 10px; }
 .brand-sub { color: #d6d9e0; font-weight: 300; letter-spacing: 0.3px; }
 .brand-rev { color: #8a909c; font-weight: 400; letter-spacing: 0; }
-/* 画素を測って直した上下のずれ 2 回目（文字は 1px 単位でしか動かないので、上下どちらかだけ変える） */
+/* 画素を測って直した上下のずれ（文字は 1px 単位でしか動かないので、上下どちらかだけ変える） */
 #root .panel-tabs > button[role=tab] { padding-top: 6px; padding-bottom: 7px; }
 #root .tl-bar button.tl-btn.small[data-zoom="out"] { padding-top: 2px; padding-bottom: 5px; }
 #root .tl-bar button.tl-btn.small[data-zoom="in"] { padding-top: 3px; padding-bottom: 4px; }
@@ -786,7 +786,7 @@ input[type='range'] { width: 100%; accent-color: var(--accent); }
 /* 下の 3 つの大きいボタン: 高さを決めて、文字を箱の真ん中に */
 #root .big-buttons button.big, #root .big-buttons button.big.reset, #root .big-buttons button.big.danger { display: flex; align-items: center; justify-content: center; line-height: 1; padding-top: 2px; padding-bottom: 0; }
 #root .controls button.tile.tile-add { padding-top: 8px; padding-bottom: 5px; }
-/* ヘッダー: 縦線と説明の 2 行を、ロゴの小文字の高さ（x の高さ）の真ん中にそろえる（i の点を含めた真ん中より約 2px 下） */
+/* ヘッダー: 説明の 2 行を、ロゴの小文字の高さ（x の高さ）の真ん中にそろえる（i の点を含めた真ん中より約 2px 下） */
 .brand-sub { position: relative; top: 2px; }
 /* ヘッダーの説明 2 行は小文字の高さの中心に（測って 0.7px 上だった分）。？ボタンのアイコンは 1/3px 上げる */
 .brand-sub { top: 2.5px; }
@@ -799,7 +799,7 @@ input[type='range'] { width: 100%; accent-color: var(--accent); }
 .brand-logo-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 /* Admin の 3 つの大きいボタン: 文字が 1px 単位でしか動かず padding では真ん中に入らないので、高さを 33px にして 3 つとも flex で真ん中に */
 #root .teacher .teacher-actions .big, #root .teacher .teacher-actions a.admin-setup-link { display: flex; align-items: center; justify-content: center; height: 33px; min-height: 33px; padding-top: 0; padding-bottom: 0; }
-/* 粒のロゴに合わせて、縦線を 1.5px・説明を 1px 下げる（小文字の部分の中心にそろえる。測った値） */
+/* 粒のロゴに合わせて、説明を 1px 下げる（小文字の部分の中心にそろえる。測った値） */
 .brand-sub { top: 3.5px; }
 /* なぞって選ぶ: カードの上では画面のスクロールをせず、指の動きを選ぶ操作に使う */
 .studio .card[data-light-id] { touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
@@ -858,7 +858,7 @@ input[type='range'] { width: 100%; accent-color: var(--accent); }
    Admin を開けた i の枠は、Profile の名前が切れないよう広げる（画面が狭いときは画面に合わせる） */
 .controls .detail output { white-space: nowrap; }
 #root .studio-infobox:has(.light-editor) { width: min(470px, calc(100% - 16px)); max-width: calc(100% - 16px); box-sizing: border-box; }
-/* 文字の上下の真ん中。指で触る画面だけ、Pro のヘッドレスで値を試してから決めた。
+/* 文字の上下の真ん中。指で触る画面だけ、値を試してから決めた。
    1280 の下の 3 ボタンは前の 2px/0 が画素でいちばん真ん中なので変えない */
 @media (pointer: coarse) {
   #root .big-buttons button.big, #root .big-buttons button.big.reset, #root .big-buttons button.big.danger { padding-top: 0; padding-bottom: 0; }
@@ -1369,7 +1369,7 @@ input[type='range'] { width: 100%; accent-color: var(--accent); }
 .mu-wave .mu-wave-fill { opacity: 0.75; }
 /* Fixtures / 3D の切り替えは真ん中に */
 #root .v3d-switch { justify-self: center; }
-/* Solid・Render・Setup の文字が上寄り（ヘッドレスで測って padding-top 1px・bottom 0 が真ん中に一番近い） */
+/* Solid・Render・Setup の文字が上寄りなので padding-top 1px・bottom 0 にする（真ん中に一番近い） */
 #root .v3d-solid { padding-top: 1px; padding-bottom: 0; }
 /* BPM の説明の文字を、同じ行の曲の情報と同じ高さに */
 .mu-bpm-fix { align-items: center; }

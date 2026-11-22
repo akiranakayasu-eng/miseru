@@ -46,7 +46,7 @@ const lights = tmuPhotoStudio.lights;
 const DIRECTION = 'Make a show that follows the song: calm parts soft, builds rising, peaks bright and moving, endings fading out.';
 // 曲ごとの指示。空の文字列は「おまかせ」（Music で Direction を空にしたときと同じ）。
 // Slow Circuit Drift は「おまかせ」で作った。
-// plan.json は、analyze が書いた prompt.txt を SHOW_SYSTEM_PROMPT と合わせて読み、Claude（作業したスレッド）が ShowPlan の形で書いたもの。
+// plan.json は、analyze が書いた prompt.txt を SHOW_SYSTEM_PROMPT と合わせて読み、Claude が ShowPlan の形で書いたもの。
 // 使った prompt.txt は scripts/presets に plan と並べて置く。
 const DIRECTIONS: Record<string, string> = { 'slow-circuit-drift': '' };
 
