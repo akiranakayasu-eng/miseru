@@ -1,5 +1,5 @@
 // 3D ビューのスタジオの設定（部屋・照明の置き方・人）と Solid 表示の入り切り。
-// 3D の枠と、天井図の場所に出す設定の欄の両方から使うので、ここに置く（2026-11-22）。
+// 3D の枠と、天井図の場所に出す設定の欄の両方から使うので、ここに置く。
 import { useSyncExternalStore } from 'react';
 import { defaultScene, type Scene } from './studio3d';
 
@@ -20,7 +20,7 @@ function load(): Scene {
 interface S {
   scene: Scene;
   solid: boolean;
-  // Setup: 天井図の場所にスタジオの設定を出す（3D の Setup ボタン。2026-11-22 Akira さん、Solid とは別に）
+  // Setup: 天井図の場所にスタジオの設定を出す
   setup: boolean;
   sel: string | null; // 'L:<照明の id>' か 'P:<人の番号>'
 }

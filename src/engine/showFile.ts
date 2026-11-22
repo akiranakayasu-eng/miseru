@@ -1,4 +1,4 @@
-// Timeline と曲を 1 つのファイル（.miseru）にまとめる・開く。2026-11-21 Akira さんの依頼
+// Timeline と曲を 1 つのファイル（.miseru）にまとめる・開く。
 // （Music で作った演出を、曲ごと Box や iCloud に置いて PC・スマホで開けるように）。
 // 形: 先頭 12 バイト "MISERU-SHOW\n"、4 バイト（LE）で JSON の長さ、JSON、そのあとに曲のバイト列。
 

@@ -1,14 +1,14 @@
 // miseru の 3D ビュー（WebGL1 だけ、外部ライブラリなし。箱の画面の大きさの上限に収めるため three.js は使わない）
 // 部屋: 幅 w(x) 奥行き d(z、-z が背景側) 高さ h。床が y=0。
-// 部屋の大きさ・照明の高さと向きは資料が無いので仮置き（2026-11-21）。
+// 部屋の大きさ・照明の高さと向きは資料が無いので仮置き。
 type V3 = number[];
 export interface Light3D { idx: number; pos: V3; dir: V3; half: number; soft: number; panel: boolean; floor: boolean; reach: number; rgb: V3; k: number }
 export interface LightIn { x: number; y: number; panel?: boolean; floor?: boolean; rgb: V3; k: number; set?: SceneLight }
 
-// ---------- スタジオの設定（Solid 表示で決める。2026-11-22 Akira さんの依頼） ----------
+// ---------- スタジオの設定 ----------
 /** 照明 1 灯の置き方。x, z は平面図の位置（m、中心が原点、-z が奥の壁）、h は高さ（m）。角度は度 */
 export interface SceneLight { x: number; z: number; h: number; pan: number; tilt: number; beam: number; soft: number }
-/** 人。pose: 立ち・座り・演奏・ダンス、kind: 大人・子ども、wear: 服（明るい・暗い・色）、inst: 楽器、dance: ダンスのポーズ（2026-11-22 Akira さん） */
+/** 人。pose: 立ち・座り・演奏・ダンス、kind: 大人・子ども、wear: 服（明るい・暗い・色）、inst: 楽器、dance: ダンスのポーズ */
 export type Inst = 'guitar' | 'violin' | 'keys' | 'drums';
 export type Dance = 'ballet' | 'arabesque' | 'contemporary' | 'floor' | 'hiphop';
 export interface ScenePerson { x: number; z: number; pose: 'stand' | 'sit' | 'musician' | 'dancer'; kind: 'adult' | 'child'; wear: 'light' | 'dark' | 'color'; inst?: Inst; dance?: Dance }
@@ -23,7 +23,7 @@ export function sceneLightOf(l: Light3D): SceneLight {
   const r = (v: number, k = 100) => Math.round(v * k) / k;
   return { x: r(l.pos[0]), z: r(l.pos[2]), h: r(l.pos[1]), pan: Math.round(Math.atan2(l.dir[0], -l.dir[2]) / deg), tilt: Math.round(Math.asin(-l.dir[1]) / deg), beam: Math.round((l.half * 2) / deg), soft: r(l.soft) };
 }
-/** 向ける先: 人（番号）・床（真下）・壁（奥・手前・左・右の真ん中の高さ）。そこから pan と tilt を出す（2026-11-22 Akira さん: 向け先を選んでから細かく直す） */
+/** 向ける先: 人（番号）・床（真下）・壁（奥・手前・左・右の真ん中の高さ）。そこから pan と tilt を出す */
 export type AimAt = { person: number } | 'floor' | 'back' | 'front' | 'left' | 'right';
 export function aimTo(l: SceneLight, at: AimAt, people: ScenePerson[]): SceneLight {
   let t: V3;
@@ -47,7 +47,7 @@ export function aimTo(l: SceneLight, at: AimAt, people: ScenePerson[]): SceneLig
 export function setRoom(w: number, d: number, h: number) {
   ROOM.w = w; ROOM.d = d; ROOM.h = h; ROOM.back = -0.4533 * d;
 }
-// カメラの決まった向き（2026-11-22 Akira さん: 既定は斜めの Home、上・前・右・左・後ろのボタン）
+// カメラの決まった向き
 // 前 = 手前（奥の壁を見る向き）、右 = 手前から見て右（+x）。部屋全体が枠に入る距離にする
 export type CamView = 'home' | 'top' | 'front' | 'right' | 'left' | 'back';
 export function camFor(view: CamView, fov: number, asp: number) {
@@ -64,7 +64,7 @@ export function camFor(view: CamView, fov: number, asp: number) {
   }
 }
 interface Buf { p: WebGLBuffer; n: WebGLBuffer; m: WebGLBuffer; count: number }
-// 部屋は奥に長い（2026-11-21 Akira さんの指示）。奥の壁は z=back、手前へ d
+// 部屋は奥に長い。奥の壁は z=back、手前へ d
 export const ROOM = { w: 5.5, d: 7.5, h: 3.0, back: -3.4 };
 // 天井図の枠（照明が吊ってある範囲）の 3D での大きさ。中心が原点
 const RIG = { w: 5.0, d: 3.5 };
@@ -108,7 +108,7 @@ function addRoom(M: Mesh) {
   M.quad([x0, 0, zb], [x1, 0, zb], [x1, h, zb], [x0, h, zb], [0, 0, 1], 0); // 奥の壁
   M.quad([x0, 0, zf], [x0, 0, zb], [x0, h, zb], [x0, h, zf], [1, 0, 0], 0); // 左
   M.quad([x1, 0, zb], [x1, 0, zf], [x1, h, zf], [x1, h, zb], [-1, 0, 0], 0); // 右
-  // 背景紙は置かない（2026-11-21 Akira さんの指示）。部屋は黒系
+  // 背景紙は置かない。部屋は黒系
 }
 function addEllipsoid(M: Mesh, c: V3, r: V3, m: number, seg = 16, ring = 10) {
   const P = (i: number, j: number): V3 => { const t = (i / ring) * Math.PI, f = (j / seg) * Math.PI * 2; return [Math.sin(t) * Math.cos(f), Math.cos(t), Math.sin(t) * Math.sin(f)]; };
@@ -173,7 +173,7 @@ function head(E: (c: V3, r: V3, m: number, a?: number, b?: number) => void, Lb: 
   E(P(0, 1.19, -0.065), [0.082, 0.11, 0.098], 6, 24, 16);
   E(P(0, 1.225, -0.085), [0.088, 0.095, 0.098], 7, 24, 16); // 髪（後ろと上だけ見える）
 }
-// 人（こちら向き）。座り（椅子つき、2026-11-21）と立ち、大人と子ども（0.72 倍）、服の 3 種（2026-11-22 Akira さんの依頼）。
+// 人（こちら向き）。座りと立ち、大人と子ども（0.72 倍）、服の 3 種。
 // 服 2（明るい）・9（暗い）・10（色）・肌 6・椅子と髪と靴 7
 export const SUBJECT = [0, 0, -0.35];
 // 演奏の腕。[0, 左ひじ, 左手, 右ひじ, 右手]（左は -x、人はこちら向き）
@@ -183,7 +183,7 @@ const ARMS: Record<Inst, number[]> = {
   keys: [0, -0.22, 1.12, 0.08, -0.2, 1.0, 0.4, 0.22, 1.12, 0.08, 0.2, 1.0, 0.4],
   drums: [0, -0.28, 0.75, 0.05, -0.25, 0.78, 0.3, 0.28, 0.75, 0.05, 0.2, 0.8, 0.35],
 };
-// ダンスのポーズ 5 種（2026-11-22 Akira さん: コンテンポラリー・バレエ・ヒップホップなど）。
+// ダンスのポーズ 5 種。
 // [体の高さのずれ, 左ひじ, 左手, 右ひじ, 右手, 左ひざ, 左足, 右ひざ, 右足]
 const DANCE: Record<Dance, number[]> = {
   // バレエ: つま先立ちで両腕を頭の上に丸く
@@ -212,7 +212,7 @@ function addPerson(M: Mesh, ps: ScenePerson) {
     M.quad(C(1, -1, 1), C(1, -1, -1), C(1, 1, -1), C(1, 1, 1), [1, 0, 0], m);
     M.quad(C(-1, -1, -1), C(-1, -1, 1), C(-1, 1, 1), C(-1, 1, -1), [-1, 0, 0], m);
   };
-  // 楽器（2026-11-22 Akira さんの依頼）。人はこちら（+z）向き。ドラムは座って、ほかは立って弾く
+  // 楽器。人はこちら（+z）向き。ドラムは座って、ほかは立って弾く
   const inst = ps.pose === 'musician' ? ps.inst ?? 'guitar' : undefined;
   const sit = ps.pose === 'sit' || inst === 'drums';
   if (inst === 'guitar') {
@@ -263,7 +263,7 @@ function addPerson(M: Mesh, ps: ScenePerson) {
   box(P(0, 0.8, -0.21), [0.2, 0.09, 0.015]);
 }
 // 灯体: 向き dir を前にした箱（前面だけ光る）
-// LED の粒（前の面の上の小さな円。天井図の見本と同じ並び、わざと大きめ。2026-11-21 Akira さんの指示）
+// LED の粒
 function addDots(M: Mesh, l: Light3D, x: V3, y: V3, d: number, pts: [number, number][], r: number) {
   const z = l.dir, S = 8, m = 3 + 0.01 * l.idx;
   for (const [u, v] of pts) {
@@ -279,9 +279,9 @@ function addFixture(M: Mesh, l: Light3D) {
   const z = l.dir, t = Math.abs(z[1]) < 0.95 ? [0, 1, 0] : [1, 0, 0];
   let x = [t[1] * z[2] - t[2] * z[1], t[2] * z[0] - t[0] * z[2], t[0] * z[1] - t[1] * z[0]]; const xl = Math.hypot(...x); x = x.map((v) => v / xl);
   const y = [z[1] * x[2] - z[2] * x[1], z[2] * x[0] - z[0] * x[2], z[0] * x[1] - z[1] * x[0]];
-  // 床置きは細長い筒（2026-11-21 Akira さんの指示）
+  // 床置きは細長い筒
   const [hw, hh, hd] = l.panel ? [0.3, 0.14, 0.05] : l.floor ? [0.09, 0.09, 0.16] : [0.15, 0.15, 0.12];
-  // 丸い灯体（ARRI L7-C・床置き PAR）は円筒で、前の丸い面が光る（2026-11-21 Akira さんの指示）
+  // 丸い灯体（ARRI L7-C・床置き PAR）は円筒で、前の丸い面が光る
   if (!l.panel) {
     const S = 28, R = hw, Rl = R * 0.86;
     const P = (r: number, f: number, d: number) => l.pos.map((v, k) => v + (x[k] * Math.cos(f) + y[k] * Math.sin(f)) * r + z[k] * d);
@@ -297,7 +297,7 @@ function addFixture(M: Mesh, l: Light3D) {
       M.tri(l.pos.map((v, k) => v + z[k] * (hd + 0.002)), P(Rl, f0, hd + 0.002), P(Rl, f1, hd + 0.002), z, z, z, 8 + 0.01 * l.idx); // 前の面（暗く光る）
     }
     const pts: [number, number][] = [[0, 0]];
-    // 粒の細かさは中くらい（2026-11-21 Akira さん: 19 個は粗く、91 個は細かすぎた）: 同心円 1・6・12・18 の 37 個
+    // 粒の細かさは中くらい: 同心円 1・6・12・18 の 37 個
     for (let ring = 1; ring <= 3; ring++) { const rr = ring * Rl * 0.27, n = ring * 6; for (let i = 0; i < n; i++) { const f = (i / n) * Math.PI * 2 - Math.PI / 2; pts.push([rr * Math.cos(f), rr * Math.sin(f)]); } }
     addDots(M, l, x, y, hd + 0.005, pts, Rl * 0.105);
     if (l.pos[1] > 1.5) addLimb(M, [l.pos[0], ROOM.h, l.pos[2]], [l.pos[0], l.pos[1] + R * 0.9, l.pos[2]], 0.015, 4);
@@ -362,7 +362,7 @@ void main(){
   c+=lc[k]*sp*at*(alb*df+s*df);}
  c=c/(1.+c*.6);c=pow(c,vec3(1./2.2));
  gl_FragColor=vec4(c,1.);}`;
-// 光の筋: ふち（視線に対して横向きの所）ほど薄くして、線に見えないようぼかす（2026-11-21 Akira さんの指示）
+// 光の筋: ふち（視線に対して横向きの所）ほど薄くして、線に見えないようぼかす
 const BFS = `precision highp float;varying vec3 vP;varying vec3 vN;varying float vM;uniform vec3 lc[${MAXL}];uniform vec3 lp[${MAXL}];uniform vec3 ld[${MAXL}];uniform vec3 eye;uniform float beam;
 void main(){int i=int(vN.y+.5);vec3 c=vec3(0.);vec3 p0=vec3(0.);vec3 d=vec3(0.,-1.,0.);
  for(int k=0;k<${MAXL};k++){if(k==i){c=lc[k];p0=lp[k];d=ld[k];}}
@@ -396,12 +396,12 @@ export function placeLights(lights: LightIn[]): Light3D[] {
     }
     const x = (l.x - 0.5) * RIG.w, z = -RIG.d / 2 + l.y * RIG.d;
     const floor = !!l.floor;
-    // 床置きは前後の間を天井図の 2 倍に広げる（8 と 10、9 と 11。2026-11-21 Akira さんの指示）。真ん中は前後の段の中ほど
+    // 床置きは前後の間を天井図の 2 倍に広げる。真ん中は前後の段の中ほど
     const zc = -RIG.d / 2 + (283 / 556) * RIG.d;
     const pos: V3 = floor ? [x, 0.25, zc + (z - zc) * 2] : [x, 2.6, z];
-    const tgt: V3 = floor ? [SUBJECT[0], 0.85, SUBJECT[2]] /* 腰より少し顔寄り（2026-11-21） */ : [SUBJECT[0], 0.95, SUBJECT[2]];
+    const tgt: V3 = floor ? [SUBJECT[0], 0.85, SUBJECT[2]] /* 腰より少し顔寄り */ : [SUBJECT[0], 0.95, SUBJECT[2]];
     let dir = tgt.map((v, k) => v - pos[k]); const dl = Math.hypot(...dir); dir = dir.map((v) => v / dl);
-    // 床置きはスポットで、人の腰へ細く絞る（2026-11-21 Akira さんの指示）
+    // 床置きはスポットで、人の腰へ細く絞る
     const half = l.panel ? 0.75 : floor ? 0.16 : 0.38; // 半角（ラジアン）。パネルは広く、丸は狭め
     return { idx, pos, dir, half, soft: SOFT0, panel: !!l.panel, floor, reach: Math.min(dl * 1.15, 3.6), rgb: l.rgb, k: l.k };
   });
@@ -416,7 +416,7 @@ export function createView(canvas: HTMLCanvasElement) {
   const still = (sc: Scene) => { setRoom(sc.room.w, sc.room.d, sc.room.h); const M = new Mesh(); addRoom(M); for (const ps of sc.people) addPerson(M, ps); return upload(gl, M); };
   let st = still(defaultScene()), stKey = '';
   let fx: Buf | null = null, bm: Buf | null = null, ls: Light3D[] = [], vpm: number[] | null = null;
-  // 既定は斜めの Home（2026-11-22 Akira さん。前の既定は 11-21 のローアングル）。画面の縦横が分かったら camFor('home') に合わせる
+  // 既定は斜めの Home。画面の縦横が分かったら camFor('home') に合わせる
   const cam = { yaw: 0.0, pitch: -0.06, dist: 5.2, tgt: [0, 0.95, -0.4], fov: 0.9 };
   const attrib = (pr: WebGLProgram, buf: Buf) => {
     for (const [name, b, sz] of [['p', buf.p, 3], ['n', buf.n, 3], ['m', buf.m, 1]] as [string, WebGLBuffer, number][]) {
@@ -461,12 +461,12 @@ export function createView(canvas: HTMLCanvasElement) {
     },
     lights: () => ls,
     // 片づけはバッファを消すだけ。loseContext すると、開発版の StrictMode で同じ canvas に作り直したとき
-    // 失われた文脈が返ってきて描けなくなる（2026-11-21 Pro の 8096 で「not available」になった）
+    // 失われた文脈が返ってきて描けなくなる
     dispose() {
       for (const b of [st, fx, bm]) if (b) for (const x of [b.p, b.n, b.m]) gl.deleteBuffer(x);
       fx = bm = null;
     },
-    /** solid: 照明の効果を切って、形と置き場所だけを見る（Blender の Solid 表示のように。2026-11-22） */
+    /** solid: 照明の効果を切って、形と置き場所だけを見る */
     draw(opts: { amb?: number; beam?: number; solid?: boolean; exposure?: number } = {}) {
       const solid = !!opts.solid;
       const w = canvas.width, h = canvas.height; gl.viewport(0, 0, w, h);
@@ -480,7 +480,7 @@ export function createView(canvas: HTMLCanvasElement) {
       for (let i = 0; i < MAXL; i++) {
         const l = ls[i];
         lp.push(...(l ? l.pos : [0, 0, 0])); ld.push(...(l ? l.dir : [0, -1, 0]));
-        // exposure: 画面としての明るさ（照明の効果だけを上げ下げ。2026-11-22）
+        // exposure: 画面としての明るさ
         const k = l ? (solid ? 1 : l.k * (opts.exposure ?? 1)) * 1.7 : 0; lc.push(...(l ? l.rgb.map((c) => c * k) : [0, 0, 0]));
         lk.push(l ? Math.cos(l.half * (1 + 0.45 * l.soft)) : 1, l ? Math.cos(l.half * Math.max(0.02, 1 - 0.9 * l.soft)) : 1); // 光の輪のふち（soft が大きいほどぼける）
       }
@@ -488,7 +488,7 @@ export function createView(canvas: HTMLCanvasElement) {
       gl.useProgram(P);
       const U = (n: string) => gl.getUniformLocation(P, n);
       gl.uniformMatrix4fv(U('vp'), false, vp); gl.uniform3fv(U('lp'), lp); gl.uniform3fv(U('ld'), ld); gl.uniform3fv(U('lc'), lc); gl.uniform2fv(U('lk'), lk);
-      // amb: 照明が消えているときの明るさ（2026-11-22 Akira さん: 若干明るいので 0.12 から下げた）
+      // amb: 照明が消えているときの明るさ
       gl.uniform1i(U('nl'), ls.length); gl.uniform3fv(U('eye'), eye); gl.uniform1f(U('amb'), opts.amb ?? 0.05); gl.uniform1f(U('solid'), solid ? 1 : 0);
       // 部屋は内側から見るので、壁は向こう向きの面だけ消す（手前の壁は透ける）
       attrib(P, st); gl.drawArrays(gl.TRIANGLES, 0, st.count);

@@ -3,7 +3,7 @@ import { showModels, type ShowModelId } from '../claudeShow';
 import { claudeSettings, useClaudeSettings } from '../claudeSettings';
 import { isWeb } from '../useShow';
 
-/** 右上の Settings で開く設定画面。いまは Claude API だけ（2026-11-22 Akira さんの指示） */
+/** 右上の Settings で開く設定画面。いまは Claude API だけ */
 export function SettingsDialog({ onClose }: { onClose: () => void }) {
   const { key, remember, model } = useClaudeSettings();
   useEffect(() => {
@@ -43,7 +43,7 @@ export function SettingsDialog({ onClose }: { onClose: () => void }) {
             <label className="mu-check">
               <input type="checkbox" checked={remember} onChange={(e) => claudeSettings.set({ remember: e.target.checked })} /> Remember on this device
             </label>
-            {/* ウェブ体験版は lecture.nakayasu.com の中に置くので、覚えたキーはそのサイトの保存場所に入る（2026-11-22 チェックの指摘） */}
+            {/* ウェブ体験版は lecture.nakayasu.com の中に置くので、覚えたキーはそのサイトの保存場所に入る */}
             {isWeb && <span className="mu-note-shared">Don’t tick this on a shared computer.</span>}
           </div>
           <div className="mu-key-row">
@@ -56,7 +56,7 @@ export function SettingsDialog({ onClose }: { onClose: () => void }) {
               ))}
             </select>
           </div>
-          {/* キーが入っているか・どこまで残るかを、欄の下にはっきり出す（2026-11-21 Akira さん）。末尾 4 文字だけ見せる */}
+          {/* キーが入っているか・どこまで残るかを、欄の下にはっきり出す。末尾 4 文字だけ見せる */}
           {key.trim() ? (
             <p className="mu-key-status" role="status">
               <span aria-hidden="true">✓</span> {remember ? 'Key saved on this device' : 'Key set for this tab only (cleared when the tab closes)'} <span className="mu-key-tail">· ••••{key.trim().slice(-4)}</span>

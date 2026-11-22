@@ -77,7 +77,7 @@ export function BoxAdmin({ box, locked, onLock, onUnlock, onClose, floor, onFloo
             {show ? 'Exit Show Mode' : 'Enter Show Mode'}
           </button>
           <p className="muted">In Show Mode the node holds the last frame even if the sender stops. Only this panel or the node’s button can release it.</p>
-          {/* 床置きの白 4 灯（四隅、DMX 101〜104）を天井図に足す。学生には使わせないので Admin だけ（2026-11-21 Akira さんの指示） */}
+          {/* 床置きの白 4 灯（四隅、DMX 101〜104）を天井図に足す。学生には使わせないので Admin だけ */}
           {onFloor && (
             <>
               <button className={floor ? 'big on' : 'big'} aria-pressed={!!floor} onClick={() => onFloor(!floor)}>
@@ -86,7 +86,7 @@ export function BoxAdmin({ box, locked, onLock, onUnlock, onClose, floor, onFloo
               <p className="muted">Four white PAR100CW lights on the floor, one in each corner (DMX 101–104, intensity only). They appear on the ceiling map as 8–11.</p>
             </>
           )}
-          {/* 箱の設定画面（PIN の変更だけ。画面の差し替えは本体ボタンの長押しで受け付ける。2026-11-20 の方針）を別のタブで開く */}
+          {/* 箱の設定画面を別のタブで開く */}
           <a className="big admin-setup-link" href={`http://${box.host}/setup`} target="_blank" rel="noreferrer">
             Node Setup
           </a>

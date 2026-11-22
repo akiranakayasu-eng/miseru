@@ -75,7 +75,7 @@ function mixHue(a: number, b: number, u: number): number {
 export function mixLook(a: Look, b: Look, u: number): Look {
   // 消えている（明るさ 0）キーの色は見えないので、相手の色をそのまま使い、明るさだけを変える。
   // 白（彩度 0）のキーの色相も見えないので、相手の色相を使う。
-  // こうしないと、黒→青で黒のキーに残った色相から回って紫を通る（2026-11-21 Akira さんの指摘）
+  // こうしないと、黒→青で黒のキーに残った色相から回って紫を通る
   if (a.intensity === 0 && b.intensity > 0) a = { ...b, intensity: 0, fx: a.fx };
   else if (b.intensity === 0 && a.intensity > 0) b = { ...a, intensity: 0, fx: b.fx };
   if (a.sat === 0 && b.sat > 0) a = { ...a, hue: b.hue };
@@ -87,7 +87,7 @@ export function mixLook(a: Look, b: Look, u: number): Look {
     cct: a.cct + (b.cct - a.cct) * u,
     tint: (a.tint ?? 0) + ((b.tint ?? 0) - (a.tint ?? 0)) * u,
     // 演出はキーから次のキーまで前のキーのものを続ける。同じ種類なら強さはなめらかにつなぐ。
-    // 速さは次のキーで切り替える（演出の位置は「時刻 × 速さ」なので、速さを途中で変えると点滅が急に速くなりすぎた。Pro で確認）
+    // 速さは次のキーで切り替える（演出の位置は「時刻 × 速さ」なので、速さを途中で変えると点滅が急に速くなりすぎるため）
     ...(a.fx
       ? {
           fx: b.fx && b.fx.kind === a.fx.kind ? { ...a.fx, depth: a.fx.depth + (b.fx.depth - a.fx.depth) * u } : a.fx,

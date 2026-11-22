@@ -70,7 +70,7 @@ input[type='range'] { width: 100%; accent-color: var(--accent); }
   .big { font-size: 15px; min-height: 48px; }
 }
 
-.badge-demo { background: var(--panel-2); color: #f5c451; /* 照明につながっていないことが目に入るよう黄色（2026-11-22 Akira さん） */ padding: 4px 12px; border-radius: 10px; font-size: 13px; }
+.badge-demo { background: var(--panel-2); color: #f5c451; /* 照明につながっていないことが目に入るよう黄色 */ padding: 4px 12px; border-radius: 10px; font-size: 13px; }
 .badge-source { background: #52525b; padding: 4px 12px; border-radius: 10px; font-weight: 500; }
 .teacher { background: var(--panel); border: 1px solid var(--accent); border-radius: var(--radius); padding: 12px 16px; display: grid; gap: 10px; }
 .teacher-head { display: flex; justify-content: space-between; align-items: center; }
@@ -230,7 +230,7 @@ input[type='range'] { width: 100%; accent-color: var(--accent); }
 
 /* Live / Timeline は、下の段（色パネル）の上のタブで切り替える */
 .work { display: flex; flex-direction: column; flex: 1; min-height: 0; }
-/* Manual・Music も Timeline と同じくウィンドウの幅いっぱい（2026-11-22 Akira さん。前は 760px まで） */
+/* Manual・Music も Timeline と同じくウィンドウの幅いっぱい */
 .work > .main { flex: 1; min-height: 0; }
 .main.single { grid-template-columns: 1fr; }
 .panel-tabs { display: flex; gap: 2px; padding-left: 10px; }
@@ -638,7 +638,7 @@ input[type='range'] { width: 100%; accent-color: var(--accent); }
 @media (max-width: 699px) {
   .color-split { grid-template-columns: 1fr; }
 }
-/* ボタンの文字を見た目で真ん中に（2026-11-20 Pro の Chrome で画素から測って決めた値。外の大きさは変えない） */
+/* ボタンの文字を見た目で真ん中に */
 #root .studio-chips button.chip { padding-top: 0px; padding-bottom: 1.8px; }
 #root .big-buttons button.big.reset { padding-top: 2px; padding-bottom: 0px; }
 #root .big-buttons button.big.danger { padding-top: 2px; padding-bottom: 0px; }
@@ -682,7 +682,7 @@ input[type='range'] { width: 100%; accent-color: var(--accent); }
   .wheel-row .wheel { order: -1; width: min(100%, 220px); margin: 0 auto; }
   .wheel-row .detail { width: 100%; }
 }
-/* 記号の位置合わせ 2 回目（Pro で測った残りのずれ） */
+/* 記号の位置合わせ 2 回目（測った残りのずれ） */
 .ico.diamond { --ico-y: -2px; }
 .ico.redo { --ico-y: -3px; }
 /* ヘッダーの miseru と副題 2 段を全体に若干大きく（28 → 31px、8 → 9px） */
@@ -730,14 +730,14 @@ input[type='range'] { width: 100%; accent-color: var(--accent); }
 .tl-layout button { padding: 0; line-height: 0; }
 .tl-layout button svg { display: block; }
 
-/* 2026-11-20 夜: Timeline の名前の列は上下の真ん中に（名前は .tl-name で包んで … で切る） */
+/* Timeline の名前の列は上下の真ん中に（名前は .tl-name で包んで … で切る） */
 .tl-row > .tl-label { display: flex; align-items: center; }
 .tl-label > .tl-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 /* 目盛りの縦線をトラックの一番下まで通す（名前の列より後ろ、キーより後ろ） */
 .tl-gridline { position: absolute; top: 0; bottom: 0; width: 0; border-left: 1px solid var(--line); opacity: 0.6; pointer-events: none; z-index: 0; }
 .tl-row .tl-lane { z-index: 1; }
 .tl-inner { min-height: 100%; }
-/* 並べ方の切り替えアイコン: 描いた線が 1/3px 下に出るので上げる（Pro で測った値） */
+/* 並べ方の切り替えアイコン: 描いた線が 1/3px 下に出るので上げる（測った値） */
 .tl-layout button svg { transform: none; }
 /* Swatches / Wheel の切り替え: 文字の行の箱を固定して上下の真ん中に */
 .segmented button { display: inline-flex; align-items: center; justify-content: center; line-height: 1; }
@@ -764,17 +764,17 @@ input[type='range'] { width: 100%; accent-color: var(--accent); }
 .tl-help td.ic svg { display: block; }
 .tl-help td.tl-help-keys { color: var(--muted); text-align: right; padding-right: 0; white-space: nowrap; }
 .tl-help-note { margin-top: 8px; font-size: 11px; color: var(--muted); }
-/* 2026-11-20 Pro で画素を測って直した上下のずれ（deviceScaleFactor 3） */
+/* 画素を測って直した上下のずれ（deviceScaleFactor 3） */
 #root .tl-bar button.tl-ic.tl-ic-text { height: 27px; }
 #root .tl-timefield { padding-top: 1px; padding-bottom: 2px; }
 #root .segmented button { padding-top: 2px; padding-bottom: 3px; }
 #root .tl-bar button[data-fit] { padding-top: 3.5px; padding-bottom: 2.5px; }
 #root .studio-infobox-close { padding-bottom: 1.5px; }
-/* ヘッダー: ロゴの右に説明（縦線は 2026-11-22 Akira さんの決定で外した） */
+/* ヘッダー: ロゴの右に説明 */
 .brand { align-items: center; gap: 10px; }
 .brand-sub { color: #d6d9e0; font-weight: 300; letter-spacing: 0.3px; }
 .brand-rev { color: #8a909c; font-weight: 400; letter-spacing: 0; }
-/* 2026-11-20 Pro で画素を測って直した上下のずれ 2 回目（文字は 1px 単位でしか動かないので、上下どちらかだけ変える） */
+/* 画素を測って直した上下のずれ 2 回目（文字は 1px 単位でしか動かないので、上下どちらかだけ変える） */
 #root .panel-tabs > button[role=tab] { padding-top: 6px; padding-bottom: 7px; }
 #root .tl-bar button.tl-btn.small[data-zoom="out"] { padding-top: 2px; padding-bottom: 5px; }
 #root .tl-bar button.tl-btn.small[data-zoom="in"] { padding-top: 3px; padding-bottom: 4px; }
@@ -788,7 +788,7 @@ input[type='range'] { width: 100%; accent-color: var(--accent); }
 #root .controls button.tile.tile-add { padding-top: 8px; padding-bottom: 5px; }
 /* ヘッダー: 縦線と説明の 2 行を、ロゴの小文字の高さ（x の高さ）の真ん中にそろえる（i の点を含めた真ん中より約 2px 下） */
 .brand-sub { position: relative; top: 2px; }
-/* ヘッダーの説明 2 行は小文字の高さの中心に（Pro で測って 0.7px 上だった分）。？ボタンのアイコンは 1/3px 上げる */
+/* ヘッダーの説明 2 行は小文字の高さの中心に（測って 0.7px 上だった分）。？ボタンのアイコンは 1/3px 上げる */
 .brand-sub { top: 2.5px; }
 #root .tl-bar button.tl-help-btn svg { transform: translateY(-0.33px); }
 /* Admin の Node Setup（箱の設定画面を開くリンク。ほかの大きいボタンと同じ見た目） */
@@ -799,7 +799,7 @@ input[type='range'] { width: 100%; accent-color: var(--accent); }
 .brand-logo-text { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 /* Admin の 3 つの大きいボタン: 文字が 1px 単位でしか動かず padding では真ん中に入らないので、高さを 33px にして 3 つとも flex で真ん中に */
 #root .teacher .teacher-actions .big, #root .teacher .teacher-actions a.admin-setup-link { display: flex; align-items: center; justify-content: center; height: 33px; min-height: 33px; padding-top: 0; padding-bottom: 0; }
-/* 粒のロゴに合わせて、縦線を 1.5px・説明を 1px 下げる（小文字の部分の中心にそろえる。Pro で測った値） */
+/* 粒のロゴに合わせて、縦線を 1.5px・説明を 1px 下げる（小文字の部分の中心にそろえる。測った値） */
 .brand-sub { top: 3.5px; }
 /* なぞって選ぶ: カードの上では画面のスクロールをせず、指の動きを選ぶ操作に使う */
 .studio .card[data-light-id] { touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
@@ -827,12 +827,12 @@ input[type='range'] { width: 100%; accent-color: var(--accent); }
   /* 下の段（z-index 6）より上に出して、暗い層の下のボタンを押せないようにする */
   .studio-infobox { z-index: 201; }
 }
-/* 全消灯中も、ヘッダーと下のデバッグ行と下の 3 ボタン（Reset All・Blackout・Full On）は暗くしない（2026-11-20、3 ボタンは 2026-11-21 Akira さんの指示）。
+/* 全消灯中も、ヘッダーと下のデバッグ行と下の 3 ボタン（Reset All・Blackout・Full On）は暗くしない。
    ヘッダーは暗い層の上に出す。下の段は暗い層の上に出し、デバッグ行のほかと背景だけを層と同じ暗さ（70% 黒）にする */
 .app-blackout-on .top { position: relative; z-index: 101; }
 .app-blackout-on .app-footer { z-index: 101; background: color-mix(in srgb, var(--bg) 30%, #000); }
 .app-blackout-on .app-footer > :not(.debugline):not(.big-buttons) { filter: brightness(0.3); pointer-events: none; }
-/* i の枠の編集（Admin のときだけ）のレイアウト（2026-11-20 Akira さんの指示で整理）:
+/* i の枠の編集（Admin のときだけ）のレイアウト:
    見出しの列は 64px で 1 行のまま、欄は高さ 28px にそろえて見出しと上下の真ん中で並べる。
    注意書きは欄の列の頭に合わせる。下の Export・Import の行は細い線で区切り、文字のベースラインでそろえる */
 #root .studio-infobox .light-editor { gap: 10px; }
@@ -853,12 +853,12 @@ input[type='range'] { width: 100%; accent-color: var(--accent); }
 @media (max-width: 520px) {
   #root .studio-infobox .light-editor-note, #root .studio-infobox .light-editor-warn { margin-left: 0; }
 }
-/* 全体チェック 2026-11-20 の直し:
+/* 細かい直し:
    Color Temperature の数値（5600 K）は 2 行に折らない。
    Admin を開けた i の枠は、Profile の名前が切れないよう広げる（画面が狭いときは画面に合わせる） */
 .controls .detail output { white-space: nowrap; }
 #root .studio-infobox:has(.light-editor) { width: min(470px, calc(100% - 16px)); max-width: calc(100% - 16px); box-sizing: border-box; }
-/* 文字の上下の真ん中（2026-11-20 全体チェックのあと）。指で触る画面だけ、Pro のヘッドレスで値を試してから決めた。
+/* 文字の上下の真ん中。指で触る画面だけ、Pro のヘッドレスで値を試してから決めた。
    1280 の下の 3 ボタンは前の 2px/0 が画素でいちばん真ん中なので変えない */
 @media (pointer: coarse) {
   #root .big-buttons button.big, #root .big-buttons button.big.reset, #root .big-buttons button.big.danger { padding-top: 0; padding-bottom: 0; }
@@ -895,11 +895,11 @@ input[type='range'] { width: 100%; accent-color: var(--accent); }
   .int-preset { height: 40px; min-width: 40px; }
   .num-edit { height: 32px; font-size: 16px; }
 }
-/* 止める確認の枠のボタン: マウスの画面だけ下に 1px（Pro で試した値） */
+/* 止める確認の枠のボタン: マウスの画面だけ下に 1px（試した値） */
 @media (pointer: fine) {
   .tl-stop-ask-actions button { padding-top: 0.5px; padding-bottom: 1px; }
 }
-/* 100%・50%・0% の文字の上下（Pro で試した値）。スマホの縦向きでは、バーが狭くなりすぎないよう 100%・50%・0% を次の行の右に回す */
+/* 100%・50%・0% の文字の上下（試した値）。スマホの縦向きでは、バーが狭くなりすぎないよう 100%・50%・0% を次の行の右に回す */
 #root .int-preset { padding-top: 0; padding-bottom: 1px; }
 @media (max-width: 520px) {
   .big-slider { grid-template-columns: auto 1fr 4ch; row-gap: 4px; }
@@ -912,7 +912,7 @@ input[type='range'] { width: 100%; accent-color: var(--accent); }
 .curve-hsv-v { fill: none; stroke: #fff; stroke-width: 1.5; }
 #root .tl-bar button.tl-hsv-btn { font-size: 11px; letter-spacing: 0.04em; }
 #root .tl-bar button.tl-hsv-btn.on { border-color: #fff; color: var(--text); }
-/* HSV ボタンの文字の上下（Pro で試した値） */
+/* HSV ボタンの文字の上下（試した値） */
 #root .tl-bar button.tl-hsv-btn { padding-top: 3.5px; padding-bottom: 4.5px; }
 @media (pointer: coarse) {
   #root .tl-bar button.tl-hsv-btn { padding-top: 0; padding-bottom: 1px; }
@@ -931,19 +931,19 @@ input[type='range'] { width: 100%; accent-color: var(--accent); }
 .key.key-off.on { box-shadow: 0 0 0 2px #000, 0 0 0 4px #fff; }
 /* −・＋・Fit・All はひとまとまり（All だけが次の段に落ちないように） */
 #root .tl-bar .tl-zoom { flex: none; flex-wrap: nowrap; }
-/* 1280 の Timeline のボタンの行を 1 段に（Pro で試した値: すき間 5px、小さいボタンの左右 7px で余裕 14px） */
+/* 1280 の Timeline のボタンの行を 1 段に（試した値: すき間 5px、小さいボタンの左右 7px で余裕 14px） */
 @media (pointer: fine) {
   #root .tl-bar { gap: 5px; }
   #root .tl-bar button.tl-btn.small { padding-left: 7px; padding-right: 7px; }
 }
 
-/* スマホ縦（天井図の幅 520px 未満）では i を出さない。i の枠はカードの長押しで開く（2026-11-21 Akira さんの指示） */
+/* スマホ縦（天井図の幅 520px 未満）では i を出さない。i の枠はカードの長押しで開く */
 #root .studio.studio-narrow .studio-info { display: none; }
 
 /* デモ版の出口の行（Connect DMX USB Pro） */
 #root .out-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
 
-/* スライダーのつまみ（◯）を大きく: マウスは 14 → 20px、指で触る画面は 24 → 28px（2026-11-21 Akira さんの指示） */
+/* スライダーのつまみ（◯）を大きく: マウスは 14 → 20px、指で触る画面は 24 → 28px */
 #root .big-slider input[type='range']::-webkit-slider-thumb, #root .detail input[type='range']::-webkit-slider-thumb { width: 20px; height: 20px; margin-top: -8px; }
 #root .big-slider input[type='range']::-moz-range-thumb, #root .detail input[type='range']::-moz-range-thumb { width: 20px; height: 20px; }
 @media (pointer: coarse) {
@@ -951,7 +951,7 @@ input[type='range'] { width: 100%; accent-color: var(--accent); }
   #root .big-slider input[type='range']::-moz-range-thumb, #root .detail input[type='range']::-moz-range-thumb { width: 28px; height: 28px; }
 }
 
-/* スライダーの溝に値の色を付ける（Hue と同じ考え方。2026-11-21 Akira さんの指示）。
+/* スライダーの溝に値の色を付ける。
    Intensity は黒 → 白、Color Temperature は Swatches の白の色、Saturation は今の Hue の 0% → 100%。色は --track で渡す */
 #root .big-slider input[type='range']::-webkit-slider-runnable-track, #root .detail input[type='range']:not(.hue)::-webkit-slider-runnable-track { background: var(--track, var(--line)); }
 #root .big-slider input[type='range']::-moz-range-track, #root .detail input[type='range']:not(.hue)::-moz-range-track { background: var(--track, var(--line)); }
@@ -959,20 +959,20 @@ input[type='range'] { width: 100%; accent-color: var(--accent); }
 #root .big-slider input[type='range']::-webkit-slider-thumb, #root .detail input[type='range']::-webkit-slider-thumb { box-shadow: 0 0 0 2px var(--bg); }
 #root .big-slider input[type='range']::-moz-range-thumb, #root .detail input[type='range']::-moz-range-thumb { box-shadow: 0 0 0 2px var(--bg); }
 
-/* つまみの中に、その位置の色（--thumb）を塗る。白い縁＋外に暗い縁で、どの溝の上でも見える（2026-11-21 Akira さんの指示） */
+/* つまみの中に、その位置の色（--thumb）を塗る。白い縁＋外に暗い縁で、どの溝の上でも見える */
 #root .big-slider input[type='range']::-webkit-slider-thumb, #root .detail input[type='range']::-webkit-slider-thumb { background: var(--thumb, var(--accent)); box-shadow: inset 0 0 0 2px #fff, 0 0 0 2px var(--bg); }
 #root .big-slider input[type='range']::-moz-range-thumb, #root .detail input[type='range']::-moz-range-thumb { background: var(--thumb, var(--accent)); box-shadow: inset 0 0 0 2px #fff, 0 0 0 2px var(--bg); }
 
-/* Intensity の 0・50・100: 選んでいるものは Select の行（.chip.on）と同じく白地に暗い文字（2026-11-21 Akira さんの指示） */
+/* Intensity の 0・50・100: 選んでいるものは Select の行（.chip.on）と同じく白地に暗い文字 */
 #root .int-preset.on { background: var(--accent); border-color: var(--accent); color: #222; }
 
-/* HSV を押しているときも Select の行（.chip.on）と同じ白地に暗い文字（2026-11-21 Akira さんの指示） */
+/* HSV を押しているときも Select の行（.chip.on）と同じ白地に暗い文字 */
 #root .tl-bar button.tl-hsv-btn.on { background: var(--accent); border-color: var(--accent); color: #222; }
 
 /* タイムラインの枠と Insert Keyframe の行の間の仕切り（上下のドラッグで枠の高さ）。上下の空きが前とほぼ同じになるよう詰める */
 #root .timeline > .splitter { margin-block: -10px; }
 
-/* Premiere のようなズームバー（2026-11-21 Akira さんの指示）。枠の横のスクロールバーの代わり:
+/* Premiere のようなズームバー。枠の横のスクロールバーの代わり:
    つまみは今見えている範囲。真ん中のドラッグで横に送り、両端の丸のドラッグで拡大・縮小 */
 #root .tl-scroll { scrollbar-width: none; }
 #root .tl-scroll::-webkit-scrollbar { height: 0; width: 0; }
@@ -992,7 +992,7 @@ input[type='range'] { width: 100%; accent-color: var(--accent); }
 /* 名前の列の仕切り（.tl-label-grip、下へ 2000px 伸ばしてある）で枠の中身が縦に伸び、トラックの無い所まで送れていた。中身の高さで切る */
 #root .tl-inner { overflow-y: clip; }
 
-/* Full On（作業灯）中は Select の chip.on と同じ白地に暗い文字。もう一度押すと元に戻る（2026-11-21） */
+/* Full On（作業灯）中は Select の chip.on と同じ白地に暗い文字。もう一度押すと元に戻る */
 #root .big-buttons button.big.full-on.on { background: var(--accent); color: #222; }
 /* Work Light（旧 Full On）: 名前の下に小さく「All 100% · 5600 K」の 2 行 */
 #root .big-buttons button.big.full-on { flex-direction: column; gap: 3px; }
@@ -1000,13 +1000,13 @@ input[type='range'] { width: 100%; accent-color: var(--accent); }
 #root .big-buttons button.big.full-on.on .big-sub { color: #555; }
 
 /* 色パネルの枠（.controls）が狭いとき（横並びの Timeline で右の列を細くしたときなど）は、Intensity のバーがつぶれないよう
-   0%・50%・100% を次の行の右に回す（画面の幅ではなく枠の幅で決める。2026-11-21） */
+   0%・50%・100% を次の行の右に回す */
 @container controls (max-width: 400px) {
   .big-slider { grid-template-columns: auto 1fr 4ch; row-gap: 4px; }
   .big-slider .int-presets { grid-column: 1 / -1; justify-self: end; }
 }
 
-/* 角丸をきれいに（2026-11-21 Akira さんの指摘「角丸が汚い」）
+/* 角丸をきれいに
    1) 半透明の縁の下に背景の色が回り込み、角の外側に暗いにじみが出ていたので、背景は縁の内側だけに塗る
    2) 枠の中に入れたボタンの角丸は「外の角丸 − すき間 − 縁」にして、外の枠と同じ間隔で曲がるようにする */
 #root button, #root .tl-btn, #root .chip, #root .int-preset, #root .big { background-clip: padding-box; }
@@ -1014,26 +1014,26 @@ input[type='range'] { width: 100%; accent-color: var(--accent); }
 #root .tl-transport > button, #root .tl-transport button.tl-btn, #root .tl-transport button.tl-ic { border-radius: 7px; }
 #root .tl-layout { border-radius: 9px; }
 #root .tl-layout button { border-radius: 6px; }
-/* 並べ方のボタンを若干小さく（26×20 → 22×17、アイコン 13×10。2026-11-21 Akira さんの指示） */
+/* 並べ方のボタンを若干小さく */
 #root .tl-layout button { width: 22px; height: 17px; }
 
-/* Work Light 中の真ん中の札: Blackout と同じ形で、白地に暗い文字（2026-11-21） */
+/* Work Light 中の真ん中の札: Blackout と同じ形で、白地に暗い文字 */
 #root .worklight-center { background: #fff; color: #222; }
 
-/* 下の Blackout ボタンは赤ではなく、Work Light と同じふつうの色に（押している間は白地のまま。2026-11-21 Akira さんの指示） */
+/* 下の Blackout ボタンは赤ではなく、Work Light と同じふつうの色に */
 #root .big-buttons button.big.danger:not(.on) { background: var(--panel-2); color: var(--text); }
 
-/* 下の Reset All ボタンも青ではなくふつうの色に。押すと確かめる枠（Blackout・Work Light の暗い層より上に出す）。2026-11-21 Akira さんの指示 */
+/* 下の Reset All ボタンも青ではなくふつうの色に。押すと確かめる枠（Blackout・Work Light の暗い層より上に出す） */
 #root .big-buttons button.big.reset { background: var(--panel-2); color: var(--text); }
 #root .reset-ask { z-index: 210; }
-/* 下の 3 ボタン（Reset All・Blackout・Work Light）は同じ幅に（2026-11-21 Akira さんの指示。前は Blackout だけ 1.3 倍） */
+/* 下の 3 ボタン（Reset All・Blackout・Work Light）は同じ幅に */
 #root .big-buttons { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
-/* 確かめる枠で今選んでいるボタン（Enter で押せる）は、青い枠ではなく白い枠で示す（2026-11-21） */
+/* 確かめる枠で今選んでいるボタン（Enter で押せる）は、青い枠ではなく白い枠で示す */
 #root .tl-stop-ask-actions button:focus { outline: none; }
 #root .tl-stop-ask-actions button:focus-visible, #root .tl-stop-ask-actions button:focus { box-shadow: 0 0 0 2px var(--bg), 0 0 0 4px #fff; }
 
-/* つまみをもっと大きく: マウス 20 → 26px、指 28 → 32px（2026-11-21 Akira さんの指示）。つまみが入るよう入力の高さも 28px に */
+/* つまみをもっと大きく: マウス 20 → 26px、指 28 → 32px。つまみが入るよう入力の高さも 28px に */
 #root .big-slider input[type='range'], #root .detail input[type='range'] { height: 28px; }
 #root .big-slider input[type='range']::-webkit-slider-thumb, #root .detail input[type='range']::-webkit-slider-thumb { width: 26px; height: 26px; margin-top: -11px; }
 #root .big-slider input[type='range']::-moz-range-thumb, #root .detail input[type='range']::-moz-range-thumb { width: 26px; height: 26px; }
@@ -1043,12 +1043,12 @@ input[type='range'] { width: 100%; accent-color: var(--accent); }
   #root .big-slider input[type='range']::-moz-range-thumb, #root .detail input[type='range']::-moz-range-thumb { width: 32px; height: 32px; }
 }
 
-/* --- 2026-11-21 Pro での確認を受けた直し --- */
+/* --- 細かい直し --- */
 /* ホイールの大きさは枠の幅から CSS で決める（JS で測ると Timeline の上下 2 段で 1 フレーム遅れていた） */
 #root .color-split .wheel-side { container-type: inline-size; }
 #root .color-split .wheel-bars { --wheel-d: clamp(150px, calc((100cqi - 8px) * 0.47), 220px); }
 #root .color-split.wheel-stacked .wheel-bars { --wheel-d: clamp(150px, calc(100cqi - 8px), 220px); }
-/* 色パネルの中身が 400px 以下なら 0・50・100 を次の行へ（バーを 150px 以上残す。Pro で測ると 390px では 92px しか残らなかった） */
+/* 色パネルの中身が 400px 以下なら 0・50・100 を次の行へ（バーを 150px 以上残す。測ると 390px では 92px しか残らなかった） */
 @media (min-width: 521px) {
   @container controls (min-width: 401px) {
     .big-slider { grid-template-columns: auto 1fr 4ch auto; }
@@ -1065,48 +1065,48 @@ input[type='range'] { width: 100%; accent-color: var(--accent); }
 /* 並べ方のアイコン 13×10 を整数の位置に置く（22×17 だと左 4.5・上 3.5 で半画素ずれた） */
 #root .tl-layout button { width: 23px; height: 18px; }
 #root .tl-zoombar-end { pointer-events: none; }
-/* 操作権が無いときは天井図のカードと Select も薄くする（2026-11-21 Akira さんの指示）。i は押せる（長押しで i を開くため、カードの触れる判定は残し、選択は App 側で受けない） */
+/* 操作権が無いときは天井図のカードと Select も薄くする。i は押せる（長押しで i を開くため、カードの触れる判定は残し、選択は App 側で受けない） */
 #root .app-no-control .studio .card, #root .app-no-control .studio-chips { opacity: 0.4; }
 #root .app-no-control .studio-chips { pointer-events: none; }
 #root .app-no-control .studio .card { cursor: default; }
-/* 「Press Take Control…」を大きく（2026-11-21 Akira さんの指示） */
+/* 「Press Take Control…」を大きく */
 #root .control-note { padding: 12px 14px; font-size: 17px; font-weight: 600; line-height: 1.3; }
 @media (max-width: 520px) { #root .control-note { font-size: 15px; padding: 10px 12px; } }
-/* Take Control と Release を大きく（2026-11-21 Akira さんの指示）。高さで決めて真ん中に置く */
+/* Take Control と Release を大きく。高さで決めて真ん中に置く */
 #root .top button.boxbar-button, #root .top button.boxbar-button.primary-ish { display: inline-flex; align-items: center; gap: 6px; height: 32px; padding: 0 16px 1px 13px; font-size: 15px; font-weight: 600; line-height: 1; border-radius: 10px; white-space: nowrap; }
 #root .top button.boxbar-button .boxbar-icon { width: 13px; height: 13px; margin: 0; vertical-align: 0; }
 @media (max-width: 520px) {
   #root .top button.boxbar-button, #root .top button.boxbar-button.primary-ish { height: 30px; padding: 0 12px 1px 10px; font-size: 13px; gap: 5px; }
   #root .top button.boxbar-button .boxbar-icon { width: 11px; height: 11px; }
 }
-/* 錠のアイコンと文字の間を狭く（2026-11-21 Akira さんの指示） */
+/* 錠のアイコンと文字の間を狭く */
 #root .top button.boxbar-button, #root .top button.boxbar-button.primary-ish { gap: 3px; }
-/* 閉じた錠は絵の右に 16 分の 3 の空きがあるので、その分だけ文字へ寄せて Release（開いた錠は右端まで絵）と同じ間にする（2026-11-21 Akira さんの指示） */
+/* 閉じた錠は絵の右に 16 分の 3 の空きがあるので、その分だけ文字へ寄せて Release（開いた錠は右端まで絵）と同じ間にする */
 #root .top button.boxbar-button .boxbar-icon-closed { margin-right: -2.4px; }
 @media (max-width: 520px) { #root .top button.boxbar-button .boxbar-icon-closed { margin-right: -2px; } }
-/* ロゴを少し明るく（2026-11-21 Akira さんが A 案 115% を選択） */
+/* ロゴを少し明るく */
 #root .brand-logo img { filter: brightness(1.15); }
-/* 明るさだけの照明（床置き PAR）を選んでいるときの色の操作（2026-11-21） */
+/* 明るさだけの照明（床置き PAR）を選んでいるときの色の操作 */
 .color-scope-note { margin: 2px 0 6px; font-size: 11px; color: var(--muted); }
 #root .panel.color-none > :not(.big-slider):not(.color-scope-note) { opacity: 0.4; pointer-events: none; }
-/* Take Control・Release: 字の大きさはそのまま、角丸の枠との間を狭く（2026-11-21 Akira さんの指示） */
+/* Take Control・Release: 字の大きさはそのまま、角丸の枠との間を狭く */
 #root .top button.boxbar-button, #root .top button.boxbar-button.primary-ish { height: 26px; padding: 0 10px 1px 8px; }
 @media (max-width: 520px) {
   #root .top button.boxbar-button, #root .top button.boxbar-button.primary-ish { height: 25px; padding: 0 8px 1px 7px; }
 }
 .control-note-arrow { display: inline-block; margin-left: 6px; vertical-align: -1px; }
 @media (max-width: 520px) { .control-note-arrow { width: 12px; height: 12px; } }
-/* Time の段を低く（2026-11-21 Akira さんの指示）: 44px → 22px */
+/* Time の段を低く: 44px → 22px */
 #root .tl-row.ruler { min-height: 22px; }
 #root .tl-row.ruler > .tl-lane { height: 22px; min-height: 22px; }
 #root .tl-row.ruler > .tl-label { min-height: 22px; padding-top: 0; padding-bottom: 0; font-size: 12px; }
 #root .tl-row.ruler .tick { top: 3px; height: 16px; line-height: 16px; font-size: 10px; }
-/* キーフレームの◆を小さく（2026-11-21 Akira さんの指示）: 16px → 12px。真ん中の高さは今と同じ（上から 24px）。指では押せる範囲を外側に広げる */
+/* キーフレームの◆を小さく: 16px → 12px。真ん中の高さは今と同じ（上から 24px）。指では押せる範囲を外側に広げる */
 #root .tl-lane .key { top: 18px; width: 12px; height: 12px; margin-left: -6px; border-radius: 2.6px; border-width: 1.5px; }
 #root .tl-lane .key.key-off { border-width: 2px; }
 #root .tl-lane .key::before { content: ''; position: absolute; inset: -5px; }
 @media (pointer: coarse) { #root .tl-lane .key::before { inset: -10px; } }
-/* Pro で測った値（2026-11-21）: 閉じた錠の寄せは −1.5px（iPhone −1px）で Release と同じ間。左右は 8.5/9.5 がいちばんつり合う（iPhone は今のまま） */
+/* 測った値: 閉じた錠の寄せは −1.5px（iPhone −1px）で Release と同じ間。左右は 8.5/9.5 がいちばんつり合う（iPhone は今のまま） */
 #root .top button.boxbar-button .boxbar-icon-closed { margin-right: -1.5px; }
 #root .top button.boxbar-button, #root .top button.boxbar-button.primary-ish { padding: 0 9.5px 1px 8.5px; }
 @media (max-width: 520px) {
@@ -1115,9 +1115,9 @@ input[type='range'] { width: 100%; accent-color: var(--accent); }
 }
 /* Select のグループをなぞって選べるよう、指でのなぞりをスクロールに取られないようにする */
 #root .studio-chips .chip[data-sel-group] { touch-action: none; }
-/* ロゴをもっと明るく（2026-11-21 Akira さんの指示）: 115% → 130% */
+/* ロゴをもっと明るく: 115% → 130% */
 #root .brand-logo img { filter: brightness(1.3); }
-/* Pro で測ると 1280 では −1.5px で Release より 0.5〜0.67px 狭かった。−1px でそろえる */
+/* 測ると 1280 では −1.5px で Release より 0.5〜0.67px 狭かった。−1px でそろえる */
 #root .top button.boxbar-button .boxbar-icon-closed { margin-right: -1px; }
 
 /* Music タブ（Admin だけ、曲から Claude で Timeline を作る）。class は mu- で始める */
@@ -1151,9 +1151,9 @@ input[type='range'] { width: 100%; accent-color: var(--accent); }
 .mu-cue-time { color: var(--muted); font-variant-numeric: tabular-nums; }
 .mu-cue-label { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .mu-cue-meta { color: var(--muted); font-size: 11px; }
-/* Music の Generate・Apply to Timeline の文字の上下（Pro で 3 案を測って選んだ。2026-11-21） */
+/* Music の Generate・Apply to Timeline の文字の上下 */
 #root .mu-panel .tl-btn.primary-ish { padding-top: 4px; padding-bottom: 4.5px; }
-/* Effects タブ（2026-11-21 Akira さんが C 案を選択）。部品の頭は fx- */
+/* Effects タブ。部品の頭は fx- */
 .fx-panel { display: grid; gap: 10px; margin-top: 4px; }
 .fx-tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px; }
 .fx-tile { display: grid; justify-items: center; gap: 2px; padding: 8px 4px; border-radius: 11px; border: 1px solid #3a3e48; background: var(--panel-2); color: var(--text); }
@@ -1191,7 +1191,7 @@ input[type='range'] { width: 100%; accent-color: var(--accent); }
 .tl-fx-band.fx-wave { background: linear-gradient(90deg, #fff, transparent, #fff) 0 0 / 16px 100% repeat-x; }
 .tl-fx-band.fx-flicker { background: repeating-linear-gradient(90deg, #fff 0 1px, transparent 1px 3px, #fff 3px 5px, transparent 5px 9px); }
 .tl-fx-band.fx-rainbow { background: linear-gradient(90deg, #f33, #fd3, #3f6, #3cf, #66f, #f3f, #f33) 0 0 / 60px 100% repeat-x; opacity: 0.8; }
-/* Order のボタンは 0・50・100 と同じ形（Pro で文字が 1.2px 下に出た）。太さも 500 にそろえる */
+/* Order のボタンは 0・50・100 と同じ形（文字が 1.2px 下に出た）。太さも 500 にそろえる */
 #root .fx-order { display: inline-flex; align-items: center; justify-content: center; padding-top: 0; padding-bottom: 1px; font-weight: 500; }
 /* Take Control が断られたとき: 枠を白くして目に入るようにする */
 #root .control-note.control-note-denied { border-color: #fff; }
@@ -1230,7 +1230,7 @@ input[type='range'] { width: 100%; accent-color: var(--accent); }
 @container (max-width: 520px) { .v3d-hint { display: none; } }
 /* Lens と mm の文字の上下（RC の測りで 0.95px 下寄り）。スライダーは動かさず文字だけ上げる */
 #root .v3d-lens .v3d-lens-label, #root .v3d-lens .v3d-lens-value { position: relative; top: -0.5px; }
-/* 照明番号の札は薄く（2026-11-21 Akira さんの指示） */
+/* 照明番号の札は薄く */
 #root .v3d-num { color: rgba(255, 255, 255, 0.55); font-weight: 500; background: rgba(18, 19, 23, 0.35); border-color: rgba(255, 255, 255, 0.28); }
 /* 照明番号の表示・非表示のボタン（右上、Select の chip と同じ形） */
 .v3d-numtoggle { position: absolute; top: 8px; right: 10px; z-index: 2; display: inline-flex; align-items: center; justify-content: center; height: 20px; padding: 0 9px 1.2px; box-sizing: border-box; font-size: 11px; line-height: 1; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); color: var(--text); }
@@ -1238,9 +1238,9 @@ input[type='range'] { width: 100%; accent-color: var(--accent); }
 /* 左下に Lens と Numbers を並べる（右上だと 390 幅で 4 の札に重なった） */
 .v3d-bottom { position: absolute; left: 10px; top: 8px; z-index: 2; display: flex; align-items: center; gap: 6px; }
 #root .v3d-bottom .v3d-lens, #root .v3d-bottom .v3d-numtoggle { position: static; }
-/* 操作の説明は右上へ（左下の Lens・Numbers と、枠の幅によっては重なった。2026-11-21 Akira さんの指摘） */
+/* 操作の説明は右上へ */
 #root .v3d-hint { top: 8px; bottom: auto; right: 10px; line-height: 14px; }
-/* 3D は枠いっぱいに重ねて、canvas の大きさで枠が伸びないようにする（仕切りで天井図の高さを変えたら 3D も同じ高さに。2026-11-21 Akira さんの指摘） */
+/* 3D は枠いっぱいに重ねて、canvas の大きさで枠が伸びないようにする */
 #root .v3d-frame > .v3d { position: absolute; inset: 0; width: auto; height: auto; }
 /* 操作の説明は左下の並びの最後に（右上・右下はどちらも札や Numbers と重なった） */
 #root .v3d-bottom .v3d-hint { position: static; margin: 0 0 0 4px; white-space: nowrap; line-height: 14px; }
@@ -1248,10 +1248,10 @@ input[type='range'] { width: 100%; accent-color: var(--accent); }
 /* Numbers は # のアイコンのボタン（幅 26px） */
 #root .v3d-numtoggle { width: 26px; padding: 0; }
 #root .v3d-numtoggle svg { display: block; }
-/* # のボタンは小さく（2026-11-21 Akira さんの指示） */
+/* # のボタンは小さく */
 #root .v3d-numtoggle { width: 20px; height: 16px; border-radius: 8px; }
 
-/* 2026-11-21 ダブルチェックの指摘への直し */
+/* 細かい直し */
 /* 高さの低い画面（スマホ横向き 390px、高さ 700px 前後のノート）では、画面の高さに押し込めずにページを縦に動かす。
    押し込めると Manual・Timeline・Music の中身が 0 になったり、天井図のカードが 8px まで縮んだりした */
 @media (max-height: 760px) {
@@ -1269,13 +1269,13 @@ input[type='range'] { width: 100%; accent-color: var(--accent); }
   .studio-chips-label { margin-right: 0; }
 }
 /* Admin を開いている間は、画面の高さに押し込めずにページを縦に動かす。
-   押し込めると、下の Admin の枠に押されてタブと色パネルが 0 になった（2026-11-21 ダブルチェック 3 の直し） */
+   押し込めると、下の Admin の枠に押されてタブと色パネルが 0 になった */
 .app.app-admin-open { height: auto; min-height: 100%; }
 .app.app-admin-open > .main, .app.app-admin-open .work, .app.app-admin-open .work > .main { flex: none; }
 .app.app-admin-open .lights, .app.app-admin-open .controls { overflow: visible; }
 .app-footer .teacher { max-height: 35dvh; }
 
-/* Solid 表示とスタジオの設定（ScenePanel.tsx、2026-11-22）。class は v3d-solid と sc- で始める */
+/* Solid 表示とスタジオの設定。class は v3d-solid と sc- で始める */
 #root .v3d-solid { display: inline-flex; align-items: center; height: 16px; padding: 0 8px 1.2px; box-sizing: border-box; font-size: 10px; line-height: 1; border: 1px solid var(--line); border-radius: 8px; background: var(--bg); color: var(--text); }
 #root .v3d-solid.on { background: var(--accent); border-color: var(--accent); color: #222; font-weight: 500; }
 .sc-panel { position: absolute; top: 8px; right: 8px; bottom: 30px; width: min(300px, 58%); overflow-y: auto; display: flex; flex-direction: column; gap: 8px; padding: 10px; box-sizing: border-box; background: rgba(18, 19, 23, 0.92); border: 1px solid var(--line); border-radius: var(--radius); font-size: 11px; color: var(--text); z-index: 3; }
@@ -1303,7 +1303,7 @@ input[type='range'] { width: 100%; accent-color: var(--accent); }
 .sc-row { display: grid; grid-template-columns: 44px minmax(0, 1fr) 48px; align-items: center; gap: 6px; }
 .sc-row span { color: var(--muted); }
 .sc-row output { text-align: right; font-variant-numeric: tabular-nums; }
-/* 設定のスライダーは Lens と同じ細い形（2026-11-22 Akira さん） */
+/* 設定のスライダーは Lens と同じ細い形 */
 #root .sc-row input[type='range'] { width: 100%; }
 /* 狭い枠では下半分に出す */
 @container (max-width: 520px) { .sc-panel { top: 45%; left: 6px; right: 6px; width: auto; bottom: 28px; } }
@@ -1327,25 +1327,25 @@ input[type='range'] { width: 100%; accent-color: var(--accent); }
 #root .v3d-bright .v3d-lens-value { min-width: 30px; }
 @container (max-width: 900px) { #root .v3d-bottom .v3d-hint { display: none; } }
 @container (max-width: 470px) { #root .v3d-lens input[type='range'] { width: 60px; } #root .v3d-bright input[type='range'] { width: 44px; } #root .v3d-bottom { gap: 4px; } }
-/* 2026-11-22 チェックの指摘への直し: 照明と人を番号で選ぶ行、狭い 3D 枠で Solid が切れないように */
+/* 照明と人を番号で選ぶ行、狭い 3D 枠で Solid が切れないように */
 .sc-pick { display: flex; flex-wrap: wrap; gap: 4px; }
 #root .sc-pick .sc-btn { min-width: 26px; padding-left: 6px; padding-right: 6px; }
 #root .sc-pick .sc-pick-p { border-style: dashed; }
 #root .v3d-bottom { right: 10px; flex-wrap: wrap; }
 @container (max-width: 470px) { #root .v3d-lens input[type='range'] { width: 54px; } #root .v3d-bright input[type='range'] { width: 40px; } #root .v3d-lens { padding: 2px 6px; gap: 4px; } }
-/* Music: Direction と Result を左右 2 段組に（2026-11-22 Akira さんの指示）。狭い枠では縦に並べる */
+/* Music: Direction と Result を左右 2 段組に。狭い枠では縦に並べる */
 #root .mu-panel { max-width: 1180px; }
 .mu-pair { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); gap: 16px; align-items: start; }
 .mu-pair > .mu-section { min-width: 0; align-content: start; }
 .mu-result-empty { padding: 10px; border: 1px dashed var(--line); border-radius: var(--radius); }
 #root .mu-panel { container-type: inline-size; }
 @container (max-width: 640px) { .mu-pair { grid-template-columns: minmax(0, 1fr); } }
-/* 右上の Settings と設定画面（2026-11-22 Akira さんの指示: Claude API を入れる場所を別の画面に） */
+/* 右上の Settings と設定画面 */
 .settings-box { width: min(480px, 100%); display: grid; gap: 12px; }
 .settings-head { display: flex; align-items: center; justify-content: space-between; }
 .settings-head .tl-stop-ask-title { margin: 0; }
 .mu-api-line { padding-bottom: 2px; }
-/* 録音（2026-11-22） */
+/* 録音 */
 .mu-rec { display: grid; gap: 6px; }
 #root .mu-rec-on { border-color: #ef4444; color: #fca5a5; font-variant-numeric: tabular-nums; }
 #root .mu-rec-dev { max-width: 100%; min-width: 0; }
@@ -1356,8 +1356,8 @@ input[type='range'] { width: 100%; accent-color: var(--accent); }
 .v3d-mode { display: inline-flex; }
 #root .v3d-mode .v3d-solid:first-child { border-radius: 8px 0 0 8px; }
 #root .v3d-mode .v3d-solid:last-child { border-radius: 0 8px 8px 0; margin-left: -1px; }
-/* 狭い枠でも Lens・Bright の文字は数字と同じ 10px（9px だと上にずれて見えた。2026-11-22 チェック） */
-/* Music の「✓ Claude API key …」は緑の文字（2026-11-22 Akira さん） */
+/* 狭い枠でも Lens・Bright の文字は数字と同じ 10px */
+/* Music の「✓ Claude API key …」は緑の文字 */
 #root .mu-api-line .mu-key-status { color: #22c55e; }
 /* 区間の色（波形と名前）。intro 青・build 橙・peak 赤・break 紫・body 緑・outro 青緑 */
 .mu-h-intro { fill: #60a5fa; color: #60a5fa; }
@@ -1367,42 +1367,42 @@ input[type='range'] { width: 100%; accent-color: var(--accent); }
 .mu-h-body { fill: #22c55e; color: #4ade80; }
 .mu-h-outro { fill: #2dd4bf; color: #2dd4bf; }
 .mu-wave .mu-wave-fill { opacity: 0.75; }
-/* Fixtures / 3D の切り替えは真ん中に（2026-11-22 Akira さん） */
+/* Fixtures / 3D の切り替えは真ん中に */
 #root .v3d-switch { justify-self: center; }
-/* 2026-11-22 チェックの指摘: Solid・Render・Setup の文字が上寄り（ヘッドレスで測って padding-top 1px・bottom 0 が真ん中に一番近い） */
+/* Solid・Render・Setup の文字が上寄り（ヘッドレスで測って padding-top 1px・bottom 0 が真ん中に一番近い） */
 #root .v3d-solid { padding-top: 1px; padding-bottom: 0; }
 /* BPM の説明の文字を、同じ行の曲の情報と同じ高さに */
 .mu-bpm-fix { align-items: center; }
 /* 録音中の印（ほかのタブにいても見える） */
 #root .rec-badge { display: inline-flex; align-items: center; gap: 4px; height: 22px; padding: 0 10px; border: 1px solid #ef4444; border-radius: 11px; background: none; color: #fca5a5; font-size: 12px; font-variant-numeric: tabular-nums; }
-/* カメラの向きのボタン（Home・Top・Front・Right・Left・Back、2026-11-22 Akira さん）。左上に 1 列でつなげる */
+/* カメラの向きのボタン。左上に 1 列でつなげる */
 .v3d-views { display: inline-flex; }
 #root .v3d-views .v3d-solid { border-radius: 0; margin-left: -1px; }
 #root .v3d-views .v3d-solid:first-child { border-radius: 8px 0 0 8px; margin-left: 0; }
 #root .v3d-views .v3d-solid:last-child { border-radius: 0 8px 8px 0; }
 #root .v3d-views .v3d-solid:hover { border-color: var(--accent); position: relative; }
 @container (max-width: 470px) { #root .v3d-views .v3d-solid { padding-inline: 5px; } }
-/* Timeline のプリセット（2026-11-22）。ボタンと同じ見た目の選択 */
+/* Timeline のプリセット。ボタンと同じ見た目の選択 */
 #root .tl-presets { color: var(--text); font: inherit; font-size: 12px; font-weight: 500; height: 25px; padding: 0 8px; max-width: 200px; cursor: pointer; }
-/* 2 画面・1 画面の切り替え（2026-11-22）。2 画面では上の段の右上、1 画面では Fixtures / 3D と同じ行の右 */
+/* 2 画面・1 画面の切り替え。2 画面では上の段の右上、1 画面では Fixtures / 3D と同じ行の右 */
 .v3d-panes-row { display: flex; justify-content: flex-end; margin-bottom: 6px; }
 .v3d-pair > .v3d-panes { grid-area: 1 / 1; justify-self: end; margin-bottom: 6px; }
-/* 指で触る画面では Presets もほかのボタンと同じ 40px（2026-11-22 チェックの指摘） */
+/* 指で触る画面では Presets もほかのボタンと同じ 40px */
 @media (pointer: coarse) { #root .tl-presets { height: 40px; } }
-/* 1 画面は高さも広げ、Fixtures と 3D を同じ大きさの枠にする（2026-11-22 チェックの指摘）。仕切りをドラッグした高さがあればそれを使う */
+/* 1 画面は高さも広げ、Fixtures と 3D を同じ大きさの枠にする。仕切りをドラッグした高さがあればそれを使う */
 .v3d-one { max-width: none; --one-h: var(--studio-h, min(57vw, calc(100vh - 260px))); }
 .v3d-one .studio, .v3d-one > .v3d-frame { justify-self: center; max-width: none; height: var(--one-h); width: min(100%, calc(var(--one-h) * 1.712)) !important; }
-/* 1 画面と、狭い画面で設定を 3D の下に出したときは、下の Manual などをページを下へ送って見る（2026-11-22 チェックの指摘: 900 幅で隠れた） */
+/* 1 画面と、狭い画面で設定を 3D の下に出したときは、下の Manual などをページを下へ送って見る */
 .app:has(.v3d-one, .sc-below) { height: auto; }
 .app:has(.v3d-one, .sc-below) :is(.main, .work) { flex: none; }
 
-/* Studio Setup: 照明（暖かい色）と人（青）を色分けする。上の番号のボタンも同じ色（2026-11-22 Akira さん） */
+/* Studio Setup: 照明（暖かい色）と人（青）を色分けする。上の番号のボタンも同じ色 */
 #root .sc-pick .sc-pick-l { border-color: #f2bd55; color: #f6d08a; }
 #root .sc-pick .sc-pick-p { border-color: #62c6ff; color: #a7dcff; }
 #root .sc-pick .sc-pick-l.on { background: #f2bd55; color: #1a1408; }
 #root .sc-pick .sc-pick-p.on { background: #62c6ff; color: #06141d; }
 .sc-light.on circle, .sc-person.on rect { fill-opacity: 0.9; }
-/* 3D の View・Overlays のメニュー（2026-11-22 Akira さん: Blender の Overlays のように整理） */
+/* 3D の View・Overlays のメニュー */
 .v3d-menu-wrap { position: relative; display: inline-flex; }
 .v3d-menu { position: absolute; left: 0; top: calc(100% + 4px); z-index: 5; display: grid; gap: 2px; width: 240px; padding: 6px; border: 1px solid var(--line); border-radius: 8px; background: rgba(18, 19, 23, 0.96); box-shadow: 0 6px 18px rgba(0, 0, 0, 0.45); }
 #root .v3d-menu-item { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; padding: 4px 8px; border: 0; border-radius: 5px; background: none; color: var(--text); font-size: 11px; text-align: left; }
@@ -1417,7 +1417,7 @@ input[type='range'] { width: 100%; accent-color: var(--accent); }
 /* 平面図の寸法 */
 .sc-dim line { stroke: #9fe3b0; stroke-width: 0.02; }
 .sc-dim text { font-size: 0.2px; fill: #c9f2d3; text-anchor: middle; }
-/* 2 画面で 3D の代わりに出す設定の欄（2026-11-22） */
+/* 2 画面で 3D の代わりに出す設定の欄 */
 .v3d-setup-pane { position: absolute; inset: 0; overflow: auto; }
 .sc-head:has(.sc-close) { justify-content: flex-start; }
 #root .sc-head:has(.sc-close) > .sc-btn:first-of-type { margin-left: auto; }

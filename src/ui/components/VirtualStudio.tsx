@@ -164,13 +164,13 @@ export function VirtualStudio({ patch, state, selected, onToggle, groups, onSele
   const aspect = patch.room?.aspect ?? 3;
   const all = patch.lights.map((l) => l.id);
   const same = (ids: string[]) => ids.length === selected.length && ids.every((id) => selected.includes(id));
-  // Shift を押しながら Select のボタンを押すと、グループを足したり外したりできる（2026-11-21 Akira さんの指示）。
+  // Shift を押しながら Select のボタンを押すと、グループを足したり外したりできる。
   // 点くのは、選択がちょうどグループの組み合わせのときだけ。全部そろったら All とすべてのグループが点く（Floor PAR があるかどうかで組み合わせは変わる）
   const isAll = all.length > 0 && same(all);
   const fullGroups = groups.filter(([, ids]) => ids.length > 0 && ids.every((id) => selected.includes(id)));
   const exactUnion = !isAll && selected.length > 0 && selected.every((id) => fullGroups.some(([, ids]) => ids.includes(id)));
   const groupOn = (ids: string[]) => (isAll || exactUnion) && ids.length > 0 && ids.every((id) => selected.includes(id));
-  // Select のグループのボタンを押したまま横へなぞると、なぞったグループをまとめて選ぶ（2026-11-21 Akira さんの指示）。
+  // Select のグループのボタンを押したまま横へなぞると、なぞったグループをまとめて選ぶ。
   // なぞったときは、指を離したあとの click を受けない（1 つだけ選び直さないため）
   const chipDrag = useRef<{ names: Set<string>; moved: boolean } | null>(null);
   const skipChipClick = useRef(false);
@@ -255,11 +255,11 @@ export function VirtualStudio({ patch, state, selected, onToggle, groups, onSele
   const perRow2 = Math.ceil(order.length / 2);
   const needRows = (n: number, k: number, g: number) => (box ? box.padT + box.padB + n * box.cardH * k + (n - 1) * g : 0);
   // 高さに合わせて 4 段階: 最大（元の並び 100%）→ 元の並び 80% → 横 2 段 → 横 1 列
-  // 元の並びは 100% → 90% → 80% の 3 段階（2026-11-20 Akira さんの指示）
-  // スマホの縦向き（幅 520px 未満）: 天井の位置は崩して、番号順に 2 段（7 台なら 4 台と 3 台）で並べる（2026-11-20 Akira さん選択）
+  // 元の並びは 100% → 90% → 80% の 3 段階
+  // スマホの縦向き（幅 520px 未満）: 天井の位置は崩して、番号順に 2 段（7 台なら 4 台と 3 台）で並べる
   const narrow = !!box && box.w < 520;
   // スマホ縦で照明が多いとき（床置き 4 灯を足して 11 灯など）は、2 段に詰めると文字が 7px まで縮むので、
-  // 段を増やして天井図を縦に伸ばす（2026-11-21 ダブルチェックの指摘）。7 灯は今までどおり 4 台と 3 台の 2 段
+  // 段を増やして天井図を縦に伸ばす。7 灯は今までどおり 4 台と 3 台の 2 段
   const perFit = box ? Math.max(1, Math.floor((box.w - 8 + 6) / (box.cardW * 0.85 + 6))) : 4;
   const rowsN = narrow ? Math.max(2, Math.ceil(order.length / perFit)) : 2;
   const perRowN = narrow ? Math.ceil(order.length / rowsN) : perRow2;
@@ -337,7 +337,7 @@ export function VirtualStudio({ patch, state, selected, onToggle, groups, onSele
     <div className={cover ? 'studio-wrap studio-covered' : 'studio-wrap'}>
       {cover && <div className="studio-cover">{cover}</div>}
       <div ref={studioRef} className={`studio layout-${layout}${narrow ? ' studio-narrow' : ''}`} role="group" aria-label="Fixtures (ceiling, top view)"
-        // 天井図の何もない所を押すと選択を外す（None と同じ。2026-11-21 Akira さんの指示）
+        // 天井図の何もない所を押すと選択を外す
         onPointerDown={(e) => {
           if (e.button !== 0 || info) return;
           if ((e.target as HTMLElement).closest('button, input, select, a, .studio-infobox, .studio-scrim, .studio-chips, [data-light-id]')) return;
@@ -347,7 +347,7 @@ export function VirtualStudio({ patch, state, selected, onToggle, groups, onSele
         {patch.lights.map((l) => {
           const look = shownLooks[l.id];
           const level = look.intensity * factor;
-          // 明るさだけの照明（床置きの PAR100CW などの 1ch）は色を持たないので、いつも Cool White で見せる（2026-11-21 Akira さんの指示）
+          // 明るさだけの照明（床置きの PAR100CW などの 1ch）は色を持たないので、いつも Cool White で見せる
           const rgb = isWhiteOnly(l.typeId) ? FIXED_WHITE : displayRgb(look);
           const pos = l.position ?? { x: 0.5, y: 0.5 };
           const range = rangeOf(l.address, l.typeId);
@@ -395,7 +395,7 @@ export function VirtualStudio({ patch, state, selected, onToggle, groups, onSele
         {infoLight && (
           <div className="studio-infobox" role="dialog" aria-label={`Fixture info: ${lightLabel(infoLight)}`}>
             <div className="studio-infobox-head">
-              {/* 見出しは付けず、番号と名前も下の表に並べる（# / Fixture / Channels / Profile / Mode。2026-11-22 Akira さん） */}
+              {/* 見出しは付けず、番号と名前も下の表に並べる */}
               <strong>Fixture info</strong>
               <button className="studio-infobox-close" onClick={() => setInfo(null)} aria-label="Close">
                 ×
@@ -424,7 +424,7 @@ export function VirtualStudio({ patch, state, selected, onToggle, groups, onSele
         )}
         <div className="chips studio-chips">
           <span className="studio-chips-label">Select:</span>
-          {/* 押してあるボタンをもう一度押すと外れて None になる（2026-11-21 Akira さんの指示） */}
+          {/* 押してあるボタンをもう一度押すと外れて None になる */}
           <button className={isAll ? 'chip on' : 'chip'} aria-pressed={isAll} onClick={() => onSelect(isAll ? [] : all)} title="Shift-click a group to add or remove it">
             All
           </button>

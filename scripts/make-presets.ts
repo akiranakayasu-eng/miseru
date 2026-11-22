@@ -1,5 +1,5 @@
-// Timeline のプリセット（曲＋前もって作ったキーフレームの .miseru）を作る。2026-11-22
-// 曲は Akira さんが Suno で作ったもの。曲そのものはリポジトリに入れない（作業の場所は外のフォルダ）。
+// Timeline のプリセット（曲＋前もって作ったキーフレームの .miseru）を作る。
+// 曲は Suno で作ったもの。曲そのものはリポジトリに入れない（作業の場所は外のフォルダ）。
 //   npx tsx scripts/make-presets.ts analyze <曲のフォルダ> <作業フォルダ>
 //     曲ごとに <slug>.prompt.txt（曲の分析と灯体の説明。Music で Claude に渡すものと同じ）と <slug>.analysis.json を書く
 //   npx tsx scripts/make-presets.ts build <曲のフォルダ> <作業フォルダ> <出力フォルダ>
@@ -45,7 +45,7 @@ function decode(file: string): { samples: Float32Array; sampleRate: number } {
 const lights = tmuPhotoStudio.lights;
 const DIRECTION = 'Make a show that follows the song: calm parts soft, builds rising, peaks bright and moving, endings fading out.';
 // 曲ごとの指示。空の文字列は「おまかせ」（Music で Direction を空にしたときと同じ）。
-// Slow Circuit Drift は 2026-11-22 Akira さんの依頼で「おまかせ」で作り直した。
+// Slow Circuit Drift は「おまかせ」で作った。
 // plan.json は、analyze が書いた prompt.txt を SHOW_SYSTEM_PROMPT と合わせて読み、Claude（作業したスレッド）が ShowPlan の形で書いたもの。
 // 使った prompt.txt は scripts/presets に plan と並べて置く。
 const DIRECTIONS: Record<string, string> = { 'slow-circuit-drift': '' };
@@ -75,7 +75,7 @@ if (mode === 'analyze') {
     const r = expandPlan(plan, lights, a, titleOf(f));
     const ext = extname(f).toLowerCase();
     const type = ext === '.mp3' ? 'audio/mpeg' : ext === '.m4a' ? 'audio/mp4' : ext === '.wav' ? 'audio/wav' : 'audio/aiff';
-    // 公開用なので、mp3 のタグ（Suno のアカウント名・URL・カバー画像など）を外す（2026-11-22 Akira さん）。曲の名前は元のファイル名（曲名）のまま
+    // 公開用なので、mp3 のタグ（Suno のアカウント名・URL・カバー画像など）を外す。曲の名前は元のファイル名（曲名）のまま
     const raw = new Uint8Array(readFileSync(join(srcDir, f)));
     const audio = ext === '.mp3' ? stripMp3Tags(raw) : raw;
     const bytes = encodeShowFile(r.timeline, { name: f, type, bytes: audio });

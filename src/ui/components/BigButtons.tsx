@@ -17,8 +17,8 @@ export function BigButtons({ blackout, fullOn, onBlackout, onReset, onAllOn }: P
         {blackout ? <span className="big-restore">Restore</span> : 'Blackout'}
       </button>
       <button className={fullOn ? 'big full-on on' : 'big full-on'} aria-pressed={!!fullOn} onClick={onAllOn} title={fullOn ? 'Press again to return to the lights before Full On' : 'All lights to 100% white (5600 K)'}>
-        {/* 作業灯だと分かる名前に（2026-11-21 Akira さんが B 案を選択） */}
-        {/* 押している間は Blackout と同じく Restore に（2026-11-21 Akira さんの指示） */}
+        {/* 作業灯だと分かる名前に */}
+        {/* 押している間は Blackout と同じく Restore に */}
         {fullOn ? <span className="big-restore">Restore</span> : (
           <>
             Work Light

@@ -1,5 +1,4 @@
-// Music タブ（2026-11-21 から誰でも使える。キーは各自の端末のもの）: 曲を分析し、Claude に演出を考えてもらい、Timeline に入れる。
-// 2026-11-20 Akira さんの依頼。タブ名 Music は同日カードで決定。
+// Music タブ: 曲を分析し、Claude に演出を考えてもらい、Timeline に入れる。
 
 import { useEffect, useId, useRef, useState } from 'react';
 import { analyzeAudio, analysisToText, type AudioAnalysis } from '../../engine/audioAnalysis.js';
@@ -102,7 +101,7 @@ export function MusicPanel({ api, lights, onApplied, onSettings }: { api: Timeli
   }, [busy]);
 
   const current = analysis && analysis.url === want ? analysis.data : null;
-  // f が 0 のときは読み取ったままのテンポ（×1）に戻す（2026-11-22 Akira さん）
+  // f が 0 のときは読み取ったままのテンポ（×1）に戻す
   const scaleBpm = (f: number) => current?.bpm && mediaUrl && setBpmFix(f ? { url: mediaUrl, bpm: Math.round(current.bpm * f * 10) / 10 } : null);
 
   const generate = async () => {
@@ -140,7 +139,7 @@ export function MusicPanel({ api, lights, onApplied, onSettings }: { api: Timeli
 
   return (
     <div className="mu-panel">
-      {/* キーとモデルは右上の Settings で入れる（2026-11-22 Akira さんの指示）。ここは入っているかだけ見せる */}
+      {/* キーとモデルは右上の Settings で入れる。ここは入っているかだけ見せる */}
       <div className="mu-section">
       <div className="mu-heading">Claude API</div>
       <div className="mu-key-row mu-api-line">
@@ -172,11 +171,11 @@ export function MusicPanel({ api, lights, onApplied, onSettings }: { api: Timeli
         {current && mediaUrl && <MusicSummary a={current} url={mediaUrl} timelineApi={api} onScaleBpm={busy ? undefined : scaleBpm} fixed={forced !== undefined} />}
       </div>
 
-      {/* Direction（左）と Result（右）の 2 段組。Generate は Direction の下、Apply・Discard は Result の下（2026-11-22 Akira さんの指示） */}
+      {/* Direction（左）と Result（右）の 2 段組。Generate は Direction の下、Apply・Discard は Result の下 */}
       <div className="mu-pair">
       <div className="mu-section">
         <div className="mu-heading">Direction</div>
-        {/* Generate は欄の上（2026-11-22 Akira さん） */}
+        {/* Generate は欄の上 */}
         <div className="mu-key-row">
           {busy ? (
             <button className="tl-btn" onClick={() => abort.current?.abort()}>
@@ -211,7 +210,7 @@ export function MusicPanel({ api, lights, onApplied, onSettings }: { api: Timeli
       {result && (
         <div className="mu-section">
           <div className="mu-heading">Result</div>
-          {/* Apply・Discard は見出しのすぐ下（2026-11-22 Akira さん） */}
+          {/* Apply・Discard は見出しのすぐ下 */}
           <div className="mu-key-row">
             <button className="tl-btn primary-ish" onClick={apply}>
               Apply to Timeline
@@ -251,7 +250,7 @@ export function MusicPanel({ api, lights, onApplied, onSettings }: { api: Timeli
 }
 
 /**
- * 曲の試聴。照明のタイムラインとは別の音で鳴らす（2026-11-21 Akira さん「分けて」）。
+ * 曲の試聴。照明のタイムラインとは別の音で鳴らす。
  * ここで再生・移動しても、照明と Timeline の時間は動かない。
  */
 // 試聴の位置を曲ごとに覚えておく（ほかのタブへ移って戻っても続きから）
@@ -332,7 +331,7 @@ function MusicSummary({ a, url, timelineApi, onScaleBpm, fixed }: { a: AudioAnal
         </span>
         {a.bpm && onScaleBpm && (
           <span className="mu-bpm-fix" role="group" aria-label="Fix tempo">
-            {/* 何のボタンか分かるように、前に説明を置く（2026-11-22 Akira さん） */}
+            {/* 何のボタンか分かるように、前に説明を置く */}
             <span className="mu-note">BPM wrong? Fix it:</span>
             <button className="tl-btn small" onClick={() => onScaleBpm(0.5)} title="BPM detected twice too fast: halve it">
               ½
@@ -404,7 +403,7 @@ function MusicSummary({ a, url, timelineApi, onScaleBpm, fixed }: { a: AudioAnal
           }
         }}
       >
-        {/* 波形は区間ごとに色を変える（2026-11-22 Akira さん）。波形の形で切り抜いた色の帯 */}
+        {/* 波形は区間ごとに色を変える。波形の形で切り抜いた色の帯 */}
         <clipPath id="mu-wclip">
           <path d={`${path} L${w},${h} L0,${h} Z`} />
         </clipPath>
@@ -429,7 +428,7 @@ function MusicSummary({ a, url, timelineApi, onScaleBpm, fixed }: { a: AudioAnal
   );
 }
 
-// Timeline の波形も Music Analysis と同じ区間の色で塗る（2026-11-22 Akira さん）。ウェブ版だけ（箱は容量の上限のため入れない）。
+// Timeline の波形も Music Analysis と同じ区間の色で塗る。ウェブ版だけ（箱は容量の上限のため入れない）。
 // 曲を読み込んだら裏で分析し、終わるまでは今までどおりの灰色の波形。App から TimelinePanel に渡す
 export function TimelineWave({ media, width }: { media: Media; width: number }) {
   const [got, setGot] = useState<{ url: string; a: AudioAnalysis } | null>(null);

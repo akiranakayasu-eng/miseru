@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, type CSSProperties, type RefObject, type P
 import { aimDir, aimTo, type AimAt, type Scene, type SceneLight, type ScenePerson } from '../studio3d';
 
 /**
- * Solid 表示のときに出す、スタジオの設定（2026-11-22 Akira さんの依頼）。
+ * Solid 表示のときに出す、スタジオの設定。
  * 平面図で照明と人を動かし、部屋の広さ・照明の向け先と向き・ビーム角・ぼかし・人の種類と姿勢を決める。
  * 照明の向きは「向け先を選ぶ（人・床・壁 4 面）→ Pan と Tilt で細かく直す」の順。
  */
@@ -30,7 +30,7 @@ export function ScenePanel({ scene, lights, sel, onSel, onChange, onReset, onClo
   const { w, d, h } = scene.room;
   const back = -0.4533 * d; // 奥の壁（studio3d の setRoom と同じ決め方）
   const pad = 0.42; // 外の寸法（W・D）の文字が切れない余白
-  // 平面図はマウスホイールでズーム（カーソルの所を中心に、1〜6 倍。2026-11-22 Akira さん）。箱の画面には入れない（容量のため）
+  // 平面図はマウスホイールでズーム。箱の画面には入れない（容量のため）
   // 箱のビルドでは呼ばない（MODE はビルドで定数になるので、毎回同じ順で呼ばれる。中身ごとビルドから消える）
   const zoomBox = import.meta.env.MODE === 'box' ? null : usePlanZoom(svgRef, -w / 2 - pad, back - pad, w + pad * 2, d + pad * 2);
 
@@ -171,7 +171,7 @@ export function ScenePanel({ scene, lights, sel, onSel, onChange, onReset, onClo
         <text x={0} y={back - 0.08} className="sc-wall">
           Back wall
         </text>
-        {/* 部屋の寸法（2026-11-22 Akira さん）: W は手前の辺の外、D は右の辺の外、H は左上の角 */}
+        {/* 部屋の寸法: W は手前の辺の外、D は右の辺の外、H は左上の角 */}
         <g className="sc-dim" aria-hidden="true">
           <line x1={-w / 2} y1={back + d + 0.1} x2={w / 2} y2={back + d + 0.1} />
           <text x={0} y={back + d + 0.27}>{`W ${w} m`}</text>
@@ -179,7 +179,7 @@ export function ScenePanel({ scene, lights, sel, onSel, onChange, onReset, onClo
           <text transform={`translate(${w / 2 + 0.24} ${back + d / 2}) rotate(90)`}>{`D ${d} m`}</text>
           <text x={-w / 2} y={back - 0.08} style={{ textAnchor: 'start' }}>{`H ${h} m`}</text>
         </g>
-        {/* 押した照明・人を手前に描く（2026-11-22 Akira さん）。塗りは少し透かして、下に重なったものも見えるように */}
+        {/* 押した照明・人を手前に描く。塗りは少し透かして、下に重なったものも見えるように */}
         {[
         ...scene.people.map((p, i) => {
           const k = `P:${i}`, s = p.kind === 'child' ? 0.22 : 0.3;
@@ -252,7 +252,7 @@ export function ScenePanel({ scene, lights, sel, onSel, onChange, onReset, onClo
               ))}
             </div>
           ))}
-          {/* Musician は楽器、Dancer はポーズを選ぶ（2026-11-22 Akira さん） */}
+          {/* Musician は楽器、Dancer はポーズを選ぶ */}
           {selPerson.pose === 'musician' && (
             <div className="sc-seg" role="group" aria-label="Instrument">
               {([['guitar', 'Guitar'], ['violin', 'Violin'], ['keys', 'Keyboard'], ['drums', 'Drums']] as const).map(([v, lab]) => {
@@ -304,7 +304,7 @@ function usePlanZoom(svgRef: RefObject<SVGSVGElement | null>, vx: number, vy: nu
   useEffect(() => {
     const svg = svgRef.current;
     if (!svg) return;
-    // ホイールを押し込んでドラッグすると動かす（2026-11-22 Akira さん）。照明や人のドラッグより先に受ける
+    // ホイールを押し込んでドラッグすると動かす。照明や人のドラッグより先に受ける
     let pan: { id: number; x: number; y: number } | null = null;
     const onDown = (e: PointerEvent) => {
       if (e.button !== 1) return;

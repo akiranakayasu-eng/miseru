@@ -9,7 +9,7 @@ import { applyEdits, loadEdits, saveEdits, type LightEdit, type PatchEdits } fro
 
 /** デモ版（vite build --mode demo）は常駐アプリなしで、ブラウザの中だけで動く */
 // ウェブ体験版（lecture.nakayasu.com/miseru/app/ に置く 1 枚の HTML）。デモ版と同じく照明にはつながず、
-// 箱・USB への送り口を出さない（2026-11-22 Akira さん: 3D・操作・タイムライン・Music を試せるもの）
+// 箱・USB への送り口を出さない
 export const isWeb = import.meta.env.MODE === 'web';
 export const isDemo = import.meta.env.MODE === 'demo' || isWeb;
 /** 箱版（vite build --mode box）は箱から配られ、ブラウザで計算した DMX を箱へ WebSocket で送る */

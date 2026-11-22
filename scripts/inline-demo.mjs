@@ -12,7 +12,7 @@ html = html.replace(/<script type="module"[^>]*src="\.?\/?([^"]+)"[^>]*><\/scrip
   return `<script type="module">${code}</script>`;
 });
 // 1 枚の HTML が外のファイル（ロゴの絵など）を読もうとしていたら止める。
-// 2026-11-22 ロゴの SVG が埋まらず、1 枚の HTML でロゴが欠けていたため
+// ロゴの SVG が埋まらず、1 枚の HTML でロゴが欠けないようにするため
 const left = readdirSync(join(dir, 'assets')).filter((f) => !/\.(js|css)$/.test(f) && html.includes(f));
 if (left.length) {
   console.error(`1 枚の HTML が外のファイルを読もうとしています: ${left.join(', ')}（vite.config.ts の assetsInlineLimit を確かめる）`);

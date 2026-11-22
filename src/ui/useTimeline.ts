@@ -60,7 +60,7 @@ export function useTimeline(send: (cmd: ShowCommand) => void) {
   /** ここまで来たら止める時刻（次のキーフレームまで再生のとき）。null なら最後まで */
   const stopAt = useRef<number | null>(null);
 
-  // 取り消し・やり直し（⌘Z / ⇧⌘Z。2026-11-21 Akira さんの指示）。操作 1 回が 1 回分。
+  // 取り消し・やり直し。操作 1 回が 1 回分。
   // キーのドラッグのように続けて変わるものは、同じ group を渡した変更を 1 回分にまとめる
   const past = useRef<Timeline[]>([]);
   const future = useRef<Timeline[]>([]);
@@ -211,7 +211,7 @@ export function useTimeline(send: (cmd: ShowCommand) => void) {
   const loadMedia = useCallback(
     async (file: File) => {
       pause();
-      // 読み込み直したら 0 フレームに戻す（2026-11-21 Akira さん）
+      // 読み込み直したら 0 フレームに戻す
       seek(0);
       if (media) URL.revokeObjectURL(media.url);
       const peaks = await peaksOf(file);

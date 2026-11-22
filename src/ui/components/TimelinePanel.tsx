@@ -155,7 +155,7 @@ export function TimelinePanel({ api, lights, selected, currentLook, groupName, o
   const [pps, setPps] = useState(40);
   // ？ボタンで開く、ボタンとキーの説明（押すか Esc で閉じる）
   const [help, setHelp] = useState(false);
-  // HSV の変化カーブを重ねて見せる（2026-11-21 Akira さんの指示）。この端末に覚えておく
+  // HSV の変化カーブを重ねて見せる。この端末に覚えておく
   const [hsv, setHsv] = useState(() => {
     try {
       return localStorage.getItem('miseru.tlHsv') === '1';
@@ -287,7 +287,7 @@ export function TimelinePanel({ api, lights, selected, currentLook, groupName, o
     setHlTracks(next);
     const ids = [...new Set(tl.tracks.filter((t) => next.includes(t.id)).flatMap((t) => t.lightIds))];
     onHighlight?.(next.length ? ids : null);
-    // 天井図の選択も、選んだトラックの照明に切り替える（外したときは選択をそのまま残す。2026-11-21 Akira さんの指示）
+    // 天井図の選択も、選んだトラックの照明に切り替える
     if (next.length) onSelectLights?.(ids);
   };
   const width = Math.max(300, tl.duration * pps);
@@ -374,7 +374,7 @@ export function TimelinePanel({ api, lights, selected, currentLook, groupName, o
     setSel({ track: track.id, index: next.keys.findIndex((k) => Math.abs(k.t - t) < 0.03) });
   };
 
-  // キーの◆をダブルクリック（指ではダブルタップ）すると、再生位置をそのキーへ（2026-11-21 Akira さんの指示）。
+  // キーの◆をダブルクリック（指ではダブルタップ）すると、再生位置をそのキーへ。
   // iPhone は touch-action: none の要素で dblclick が来ないことがあるので、押した時刻で自分で数える
   const lastKeyTap = useRef<{ id: string; at: number } | null>(null);
   const startDrag = (e: React.PointerEvent, track: Track, clicked: number) => {
@@ -453,7 +453,7 @@ export function TimelinePanel({ api, lights, selected, currentLook, groupName, o
     lane.addEventListener('pointercancel', up);
   };
 
-  // 保存: 曲を読み込んでいれば曲ごと 1 つの .miseru に、なければ Timeline だけの .miseru.json に（2026-11-21 Akira さんの依頼）。
+  // 保存: 曲を読み込んでいれば曲ごと 1 つの .miseru に、なければ Timeline だけの .miseru.json に。
   // 保存先を選べるブラウザ（Mac の Chrome など）では、Box や iCloud Drive のフォルダを選べる
   const exportJson = async () => {
     const base = (tl.name || 'miseru').replace(/[\\/:*?"<>|]/g, '_');
@@ -547,7 +547,7 @@ export function TimelinePanel({ api, lights, selected, currentLook, groupName, o
     setPps(Math.min(200, Math.max(8, avail / last)));
     el.scrollLeft = 0;
   };
-  // 0 から最後のフレーム（タイムラインの長さ）までがちょうど見える倍率にする（2026-11-21 Akira さんの指示）
+  // 0 から最後のフレーム（タイムラインの長さ）までがちょうど見える倍率にする
   const fitAll = () => {
     const el = scrollRef.current;
     if (!el) return;
@@ -557,7 +557,7 @@ export function TimelinePanel({ api, lights, selected, currentLook, groupName, o
     el.scrollLeft = 0;
   };
 
-  // キーを作った・開いたあとは全体（All）を見せる（2026-11-22 Akira さん）。印が立っていて枠に幅があるときだけ 1 回かける
+  // キーを作った・開いたあとは全体（All）を見せる。印が立っていて枠に幅があるときだけ 1 回かける
   useEffect(() => {
     if (fitAllWanted && (scrollRef.current?.clientWidth ?? 0) > 0) {
       fitAllWanted = false;
@@ -565,7 +565,7 @@ export function TimelinePanel({ api, lights, selected, currentLook, groupName, o
     }
   });
 
-  // ズームは Premiere にそろえる（2026-11-21 Akira さんの指示）: 枠の下のズームバーの両端をドラッグして拡大・縮小、
+  // ズームは Premiere にそろえる: 枠の下のズームバーの両端をドラッグして拡大・縮小、
   // 真ん中をドラッグして横に送る。= と - で再生位置を中心に拡大・縮小、\\ で全体、⌥ + ホイールでマウスの位置を中心に。
   const PPS_MIN = 1;
   const PPS_MAX = 400;
@@ -783,7 +783,7 @@ export function TimelinePanel({ api, lights, selected, currentLook, groupName, o
         </span>
       </div>
 
-      {/* キーの追加とファイルの段は Play の段のすぐ下（2026-11-22 Akira さん） */}
+      {/* キーの追加とファイルの段は Play の段のすぐ下 */}
       <div className="tl-bar">
         <button className="tl-btn primary-ish" disabled={selected.length === 0} onClick={addKeyHere}>
           {overwrites ? <><span className="ico redo">{'\u21BB'}</span> Overwrite Keyframe</> : <><span className="ico diamond">{'\u25C6'}</span> Insert Keyframe</>}
@@ -928,7 +928,7 @@ export function TimelinePanel({ api, lights, selected, currentLook, groupName, o
                     const t = t0 + ((t1 - t0) * i) / n;
                     return { x: t * pps, look: evaluateTrack(track, t)! };
                   });
-                  // トラックの行を高くし、キーの段の下に Hue・Sat・Value を 1 段ずつ分けて描く（2026-11-21 Akira さんの指示）
+                  // トラックの行を高くし、キーの段の下に Hue・Sat・Value を 1 段ずつ分けて描く
                   const BAND = 22;
                   const y = (band: number, v: number) => band * BAND + 3 + (1 - v) * (BAND - 6);
                   return (
@@ -966,7 +966,7 @@ export function TimelinePanel({ api, lights, selected, currentLook, groupName, o
                 {track.keys.map((k, i) => (
                   <button
                     key={i}
-                    // 明るさ 0 のキーは、黒の中に色の縁で「色は入っているが消えている」と見せる（2026-11-21 Akira さん選択）
+                    // 明るさ 0 のキーは、黒の中に色の縁で「色は入っているが消えている」と見せる
                     className={`${sel?.track === track.id && sel.index === i ? 'key on' : 'key'}${k.look.intensity < 0.005 ? ' key-off' : ''}`}
                     style={
                       k.look.intensity < 0.005
@@ -977,7 +977,7 @@ export function TimelinePanel({ api, lights, selected, currentLook, groupName, o
                     aria-label={`Keyframe at ${k.t.toFixed(1)} s${k.look.fx ? `, ${k.look.fx.kind}` : ''}`}
                   />
                 ))}
-                {/* 演出の入ったキー: ◆の上に演出の印、次のキーまでの区間の下に演出ごとの模様（2026-11-21） */}
+                {/* 演出の入ったキー: ◆の上に演出の印、次のキーまでの区間の下に演出ごとの模様 */}
                 {track.keys.map((k, i) =>
                   k.look.fx ? (
                     <span key={`fx${i}`} className="tl-fx-mark" style={{ left: k.t * pps }} aria-hidden="true" title={k.look.fx.kind}>
@@ -1022,7 +1022,7 @@ export function TimelinePanel({ api, lights, selected, currentLook, groupName, o
           <span className="tl-zoombar-end end" />
         </div>
       </div>
-      {/* タイムラインの枠の高さを上下のドラッグで変える。ダブルクリックで中身に合わせた高さに戻す（2026-11-21 Akira さんの指示） */}
+      {/* タイムラインの枠の高さを上下のドラッグで変える。ダブルクリックで中身に合わせた高さに戻す */}
       <Splitter label="Resize timeline height" min={70} measure={() => scrollRef.current?.getBoundingClientRect().height ?? 200} onResize={resizeTl} onReset={() => resizeTl(null)} />
     </div>
   );
@@ -1034,7 +1034,7 @@ export function requestFitAll() {
   fitAllWanted = true;
 }
 
-// Timeline のプリセット（曲と、前もって作ったキーフレームの組。2026-11-22 Akira さん: Suno で作った曲）。
+// Timeline のプリセット。
 // presets/presets.json と .miseru をこの画面と同じ場所に置く。無ければ出さない。箱の画面には入れない
 interface Preset {
   title: string;

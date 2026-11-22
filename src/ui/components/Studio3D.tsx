@@ -13,12 +13,12 @@ interface Props {
 }
 
 /**
- * スタジオを 3D で見る（2026-11-21 Akira さんの依頼。Blender ではなく miseru の中で）。
+ * スタジオを 3D で見る。
  * どの照明がどこを何色で照らすかが分かる程度で、写実ではない。ドラッグで回す、ホイールか 2 本指で寄る。
  */
-// 視点とレンズは画面を移っても覚えておく（部品が消えて作り直されても続きから。2026-11-21 Akira さんの指摘）
+// 視点とレンズは画面を移っても覚えておく
 const kept: { cam: { yaw: number; pitch: number; dist: number; tgt: number[] } | null; lens: number } = { cam: null, lens: 24 };
-// 画面としての明るさ（照明の効果の見え方だけ。ディスプレイの明るさのように。2026-11-22 Akira さん）。ブラウザごとに覚える
+// 画面としての明るさ。ブラウザごとに覚える
 const EXPO_KEY = 'miseru.v3dExposure';
 const readExpo = () => {
   try {
@@ -32,7 +32,7 @@ const readExpo = () => {
 const isFloor = (l: PatchedLight) => l.group === 'Floor PAR' || l.typeId === 'dimmer-1ch';
 
 export function Studio3D({ patch, state }: Props) {
-  // Solid: 照明の効果を切って形と置き場所を見ながら、スタジオを設定する（2026-11-22 Akira さん）
+  // Solid: 照明の効果を切って形と置き場所を見ながら、スタジオを設定する
   const { scene, solid, setup } = useSceneStore();
   const [expo, setExpoState] = useState(readExpo);
   const setExpo = (v: number) => {
@@ -53,13 +53,13 @@ export function Studio3D({ patch, state }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const viewRef = useRef<View3D | null>(null);
   const [failed, setFailed] = useState(false);
-  // レンズの焦点距離（フルサイズ換算 15〜80mm、2026-11-21 Akira さんの指示）。縦の画角は 24mm の高さで決める
+  // レンズの焦点距離。縦の画角は 24mm の高さで決める
   const [lens, setLensState] = useState(kept.lens);
   const setLens = (mm: number) => {
     kept.lens = mm;
     setLensState(mm);
   };
-  // 照明番号の札の表示・非表示（2026-11-21 Akira さんの指示）。ブラウザごとに覚える
+  // 照明番号の札の表示・非表示。ブラウザごとに覚える
   const [showNums, setShowNums] = useState(() => {
     try {
       return localStorage.getItem('miseru.v3dNumbers') !== '0';
@@ -67,7 +67,7 @@ export function Studio3D({ patch, state }: Props) {
       return true;
     }
   });
-  // 人の表示・非表示（2026-11-22 Akira さん）。ブラウザごとに覚える
+  // 人の表示・非表示。ブラウザごとに覚える
   const [showPeople, setShowPeople] = useState(() => {
     try {
       return localStorage.getItem('miseru.v3dPeople') !== '0';
@@ -75,7 +75,7 @@ export function Studio3D({ patch, state }: Props) {
       return true;
     }
   });
-  // 部屋の寸法（W・D・H）の表示・非表示（2026-11-22 Akira さん）。ブラウザごとに覚える
+  // 部屋の寸法（W・D・H）の表示・非表示。ブラウザごとに覚える
   const [showDims, setShowDims] = useState(() => {
     try {
       return localStorage.getItem('miseru.v3dDims') !== '0';
@@ -93,7 +93,7 @@ export function Studio3D({ patch, state }: Props) {
     }
     setShowDims(!showDims);
   };
-  // 表示の切り替えとカメラの向きは、Blender の Overlays のようにメニューへまとめる（2026-11-22 Akira さん）
+  // 表示の切り替えとカメラの向きは、Blender の Overlays のようにメニューへまとめる
   const [menu, setMenu] = useState<'view' | 'overlays' | null>(null);
   useEffect(() => {
     if (!menu) return;
@@ -133,7 +133,7 @@ export function Studio3D({ patch, state }: Props) {
     v.cam.fov = 2 * Math.atan(12 / lens);
     drawRef.current();
   }, [lens, failed, showNums, showPeople, showDims]);
-  // 決まった向きへカメラを動かす（Home・Top・Front・Right・Left・Back、2026-11-22 Akira さん）
+  // 決まった向きへカメラを動かす
   const goView = (view: CamView) => {
     const v = viewRef.current, canvas = canvasRef.current;
     if (!v || !canvas) return;
@@ -180,13 +180,13 @@ export function Studio3D({ patch, state }: Props) {
     const wrap = wrapRef.current;
     if (!wrap) return;
     // 描く画素と画面の点の比（canvas は devicePixelRatio を 2 までに抑えているので、window の値は使わない。
-    // 2026-11-22 チェックの指摘: iPhone（3x）で番号が照明からずれた）
+    // 使うと iPhone（3x）で番号が照明からずれる）
     const cv = canvasRef.current;
     const dpr = cv && cv.clientWidth > 0 ? cv.width / cv.clientWidth : 1;
     // 左上のカメラのボタンに重なる札は、ボタンの下へ寄せる
     const vb = wrap.querySelector<HTMLElement>('.v3d-bottom');
     const vbR = vb ? vb.offsetLeft + vb.offsetWidth : 0, vbB = vb ? vb.offsetTop + vb.offsetHeight : 0;
-    // 近い照明の札が重ならないよう、前に置いた札と 16px 以内なら上へずらす（2026-11-22 チェックの指摘）
+    // 近い照明の札が重ならないよう、前に置いた札と 16px 以内なら上へずらす
     const placed: [number, number][] = [];
     v.lights().forEach((l, i) => {
       const tag = wrap.querySelector<HTMLElement>(`[data-v3d-n="${i}"]`);
@@ -200,7 +200,7 @@ export function Studio3D({ patch, state }: Props) {
       tag.style.display = out ? 'none' : '';
       const tx = Math.min(W - 10, Math.max(10, x));
       let ty = Math.min(H - 10, Math.max(10, y));
-      // カメラのボタンの下へ寄せ、ほかの札と重なれば下へずらす（上へずらすとボタンに隠れた。2026-11-22 チェックの指摘）
+      // カメラのボタンの下へ寄せ、ほかの札と重なれば下へずらす
       for (let k = 0; k < 5; k++) {
         if (tx < vbR + 10 && ty < vbB + 10) ty = vbB + 10;
         if (!placed.some(([a, c]) => Math.abs(a - tx) < 16 && Math.abs(c - ty) < 16)) break;
@@ -209,7 +209,7 @@ export function Studio3D({ patch, state }: Props) {
       placed.push([tx, ty]);
       tag.style.transform = `translate(${tx}px, ${ty}px) translate(-50%, -50%)`;
     });
-    // 部屋の寸法: W は奥の壁の床の辺、D は右の床の辺、H は奥の左の角（2026-11-22 Akira さん）
+    // 部屋の寸法: W は奥の壁の床の辺、D は右の床の辺、H は奥の左の角
     const { w: rw, d: rd, h: rh } = sc.room, rb = -0.4533 * rd;
     const dims: [string, [number, number, number], [number, number, number]][] = [
       ['w', [-rw / 2, 0, rb], [rw / 2, 0, rb]],
@@ -394,9 +394,9 @@ export function Studio3D({ patch, state }: Props) {
         <p className="v3d-msg">3D view is not available on this device.</p>
       ) : (
         <>
-          {/* 3D の操作はすべて左上に 1 段でまとめる（2026-11-22 Akira さん）。class 名は前のまま v3d-bottom */}
+          {/* 3D の操作はすべて左上に 1 段でまとめる。class 名は前のまま v3d-bottom */}
           <div className="v3d-bottom">
-          {/* カメラの決まった向き（2026-11-22 Akira さん）。View のメニューにまとめる */}
+          {/* カメラの決まった向き。View のメニューにまとめる */}
           <div className="v3d-menu-wrap">
             <button className={menu === 'view' ? 'v3d-solid on' : 'v3d-solid'} aria-expanded={menu === 'view'} aria-haspopup="menu" onClick={() => setMenu(menu === 'view' ? null : 'view')} title="Camera: Home, Top, Front, Right, Left, Back">
               View ▾
@@ -429,7 +429,7 @@ export function Studio3D({ patch, state }: Props) {
               </div>
             )}
           </div>
-          {/* 文字を押すと既定に戻し、数字を押すと打ち込める（2026-11-22 Akira さん） */}
+          {/* 文字を押すと既定に戻し、数字を押すと打ち込める */}
           <div className="v3d-lens" style={{ '--fill': `${((lens - 15) / 65) * 100}%` } as CSSProperties}>
             <button className="v3d-lens-label" onClick={() => setLens(24)} title="Back to 24 mm">
               Lens
@@ -446,7 +446,7 @@ export function Studio3D({ patch, state }: Props) {
               <NumVal v={expo} lo={0.5} hi={4} step={0.1} show={`×${expo.toFixed(1)}`} label="Bright (×)" set={setExpo} />
             </div>
           )}
-          {/* 画面に重ねて出すもの（番号・人・寸法）を Overlays にまとめる（Blender と同じ考え方、2026-11-22 Akira さん） */}
+          {/* 画面に重ねて出すもの（番号・人・寸法）を Overlays にまとめる */}
           <div className="v3d-menu-wrap">
             <button className={menu === 'overlays' ? 'v3d-solid on' : 'v3d-solid'} aria-expanded={menu === 'overlays'} aria-haspopup="menu" onClick={() => setMenu(menu === 'overlays' ? null : 'overlays')} title="Overlays: what to show on the 3D view">
               Overlays ▾
@@ -466,7 +466,7 @@ export function Studio3D({ patch, state }: Props) {
               </div>
             )}
           </div>
-          {/* Solid / Render の切り替え（2026-11-22 Akira さん）。Render が照明の効果の見え方、Solid が形と置き場所の設定 */}
+          {/* Solid / Render の切り替え。Render が照明の効果の見え方、Solid が形と置き場所の設定 */}
           <div className="v3d-mode" role="group" aria-label="View">
             <button className={solid ? 'v3d-solid on' : 'v3d-solid'} aria-pressed={solid} onClick={() => sceneStore.setSolid(true)} title="Solid: see the shapes and places">
               Solid
@@ -475,7 +475,7 @@ export function Studio3D({ patch, state }: Props) {
               Render
             </button>
           </div>
-          {/* Setup: 左の天井図とスタジオの設定を入れ替える（2026-11-22 Akira さん） */}
+          {/* Setup: 左の天井図とスタジオの設定を入れ替える */}
           <button className={setup ? 'v3d-solid v3d-setup on' : 'v3d-solid v3d-setup'} aria-pressed={setup} onClick={() => sceneStore.setSetup(!setup)} title="Setup: set up the room, lights and people (swaps with the ceiling view)">
             Setup
           </button>

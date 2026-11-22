@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'react';
 import { defaultFx, FX_SPEED_MAX, FX_SPEED_MIN, fxKinds, fxOrders, type Fx, type FxKind, type FxOrder, type Look } from '../../engine/index.js';
 
-/** 演出のタブ（Swatches・Wheel の横。2026-11-21 Akira さんが C 案を選択）。選んだ照明に効き、Insert Keyframe でそのままキーに入る */
+/** 演出のタブ。選んだ照明に効き、Insert Keyframe でそのままキーに入る */
 
 const LABELS: Record<FxKind, [string, string]> = {
   strobe: ['Strobe', 'Fast flashes'],

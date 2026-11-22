@@ -1,9 +1,9 @@
 import { useEffect, useState, useSyncExternalStore } from 'react';
 
 /**
- * 録音（2026-11-22 Akira さんの指示）。Mac の「サウンド」の入力と同じ一覧（マイク、オーディオインターフェース、仮想の入力など）から選んで録り、Music に読み込む。
- * ほかのタブの音を録る形は同日 Akira さんの判断でやめた。録ったものはファイルに保存できる。何を録って何に使うかは使う人の責任とし、その一文を画面に出す。
- * 録音の状態は画面の外に置く。Manual や Timeline のタブへ移っても録音は続き、録った分は消えない（2026-11-22 チェックの指摘）。
+ * 録音。Mac の「サウンド」の入力と同じ一覧（マイク、オーディオインターフェース、仮想の入力など）から選んで録り、Music に読み込む。
+ * ほかのタブの音は録らない。録ったものはファイルに保存できる。何を録って何に使うかは使う人の責任とし、その一文を画面に出す。
+ * 録音の状態は画面の外に置く。Manual や Timeline のタブへ移っても録音は続き、録った分は消えない。
  */
 interface RecState {
   rec: boolean;
@@ -136,7 +136,7 @@ export function Recorder({ onDone }: { onDone: (f: File) => void }) {
   );
 }
 
-/** 録音中の印。ほかのタブにいても上に出し、押すと Music を開く（2026-11-22 チェックの指摘） */
+/** 録音中の印。ほかのタブにいても上に出し、押すと Music を開く */
 export function RecBadge({ onOpen }: { onOpen: () => void }) {
   const { rec, t0 } = useSyncExternalStore(sub, () => st);
   const [, tick] = useState(0);

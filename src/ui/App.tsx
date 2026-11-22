@@ -56,14 +56,14 @@ export function App() {
   const [showTeacher, setShowTeacher] = useState(false);
   // Lock を押したら、もう一度パスワードを入れるまで Admin の操作を隠す（画面の中だけの錠）
   const [adminLocked, setAdminLocked] = useState(false);
-  // 照明の ch と機種を変えられるのは、Admin の枠を開いてパスワードで開けている間だけ（2026-11-20 Akira さんの指示）。
+  // 照明の ch と機種を変えられるのは、Admin の枠を開いてパスワードで開けている間だけ。
   // それ以外（デモ版を含む）は i の枠は見るだけ
   const canEditPatch = !!editLight && !!replaceEdits && !!defaultPatch && showTeacher && !!box?.teacher && !adminLocked;
   const studioEdit = canEditPatch ? { defaults: defaultPatch!, onEdit: editLight!, onReplace: replaceEdits! } : null;
   const [mode, setMode] = useState<'light' | 'timeline' | 'music'>('light');
-  // 右上の Settings（Claude API のキーとモデル。2026-11-22 Akira さんの指示）
+  // 右上の Settings
   const [showSettings, setShowSettings] = useState(false);
-  // Music タブ（曲から Claude で演出を作る）は誰でも使える（2026-11-21 Akira さん: 料金は各自のキーに付き、
+  // Music タブ（曲から Claude で演出を作る）は誰でも使える（料金は各自のキーに付き、
   // 学生は自分の端末で使う。スタジオに共用の端末は置かない）
   // タブを切り替えたら、色パネルのスクロールを一番上に戻す（Intensity が隠れたまま出ないように）
   useEffect(() => {
@@ -107,11 +107,11 @@ export function App() {
     window.addEventListener('keydown', onKey);
     return () => window.removeEventListener('keydown', onKey);
   }, [mode, timeline.undo, timeline.redo]);
-  // Timeline を再生したまま Manual に移ると、裏の再生が Manual の操作を上書きする。移る前に止めるか聞く（2026-11-20 Akira さん決定）
+  // Timeline を再生したまま Manual に移ると、裏の再生が Manual の操作を上書きする。移る前に止めるか聞く
   const [stopAsk, setStopAsk] = useState(false);
-  // Reset All は確かめてから（2026-11-21 Akira さんの指示）
+  // Reset All は確かめてから
   const [resetAsk, setResetAsk] = useState(false);
-  // Admin の枠は Esc でも閉じる（2026-11-21 ダブルチェックの指摘。確かめる枠が出ている間はそちらを先に閉じる）
+  // Admin の枠は Esc でも閉じる
   useEffect(() => {
     if (!showTeacher) return;
     const onKey = (e: KeyboardEvent) => {
@@ -176,9 +176,9 @@ export function App() {
     }
   };
   const wideWork = useMedia('(min-width: 761px)');
-  // 3D ビュー: 広い画面では天井図の右に並べ、狭い画面では Top / 3D で切り替える（2026-11-21 Akira さんがカードで B を選択）
+  // 3D ビュー: 広い画面では天井図の右に並べ、狭い画面では Top / 3D で切り替える
   const wideScreen = useMedia('(min-width: 1100px)');
-  // 広い画面でも 1 画面（Fixtures / 3D の切り替え）を選べる（2026-11-22 Akira さん）。この端末に覚える
+  // 広い画面でも 1 画面（Fixtures / 3D の切り替え）を選べる。この端末に覚える
   const [onePane, setOnePaneState] = useState(() => {
     try {
       return localStorage.getItem('miseru.studioPanes') === '1';
@@ -213,7 +213,7 @@ export function App() {
   const { setup } = useSceneStore();
   // 箱は前のまま: 1 画面でも Setup の間は 2 画面にする
   const wide3d = wideScreen && (!onePane || (import.meta.env.MODE === 'box' && setup));
-  // 1 画面と狭い画面では、Fixtures / 3D / Setup のタブで切り替える（2026-11-22 Akira さん）。箱の画面は容量のため前のまま（3D の Setup ボタン）
+  // 1 画面と狭い画面では、Fixtures / 3D / Setup のタブで切り替える。箱の画面は容量のため前のまま（3D の Setup ボタン）
   const pick = (v3: boolean, su: boolean) => {
     setView3d(v3);
     sceneStore.setSetup(su);
@@ -241,7 +241,7 @@ export function App() {
   };
   const tlDrag = useRef<{ x: number; w: number } | null>(null);
   // 覚えた幅は、描くときは CSS の clamp で今の枠の幅に収める（JS で枠の幅を読むと、Manual の狭い枠の幅で決めてしまい、
-  // Timeline に切り替えてから 1〜2 秒後の描き直しで幅が変わっていた。2026-11-21 Akira さんの指摘）。ここはドラッグ用
+  // Timeline に切り替えてから 1〜2 秒後の描き直しで幅が変わっていた）。ここはドラッグ用
   const clampTl = (w: number) => {
     const total = mainRef.current?.clientWidth ?? 1200;
     const min = total - 12 - 420;
@@ -280,7 +280,7 @@ export function App() {
   }
 
   const first = state.looks[selected[0]];
-  // 明るさだけの照明（床置き PAR）が選択に入っているか。色の操作は色が変わる照明だけに効く（2026-11-21）
+  // 明るさだけの照明（床置き PAR）が選択に入っているか。色の操作は色が変わる照明だけに効く
   const whiteOnlySel = patch.lights.filter((l) => selected.includes(l.id) && isWhiteOnly(l.typeId));
   const colorScope: 'all' | 'mixed' | 'none' = whiteOnlySel.length === 0 ? 'all' : whiteOnlySel.length === selected.length ? 'none' : 'mixed';
   const whiteOnlyName = [...new Set(whiteOnlySel.map((l) => l.group ?? l.name))].join(', ');
@@ -293,7 +293,7 @@ export function App() {
       <header className="top">
         <div className="brand">
           <h1 className="brand-logo">
-            {/* ロゴ: LED の粒で描いた miseru（B1 案、2026-11-20 Akira さん決定）。文字は読み上げ用に残す */}
+            {/* ロゴ: LED の粒で描いた miseru。文字は読み上げ用に残す */}
             <img src={logoUrl} alt="" width={109} height={27} />
             <span className="brand-logo-text">miseru</span>
           </h1>
@@ -306,7 +306,7 @@ export function App() {
         {isDemo && <span className="badge-demo">{isWeb ? 'Web trial — not connected to fixtures' : 'Demo — not connected to fixtures'}</span>}
         {sources.active !== 'app' && <span className="badge-source">External source active</span>}
         {!isBox && <RecBadge onOpen={() => setMode('music')} />}
-        {/* 右上の Settings ボタンは外した（2026-11-22 Akira さん）。設定画面は Music の Claude API の欄から開く */}
+        {/* 右上の Settings ボタンは外した。設定画面は Music の Claude API の欄から開く */}
       </header>
       {showSettings && <SettingsDialog onClose={() => setShowSettings(false)} />}
 
@@ -317,7 +317,7 @@ export function App() {
       )}
       {noControl && (
         <p className={box?.denied ? 'control-note control-note-denied' : 'control-note'} role="status">
-          {/* Take Control が断られたら、理由をここ（目に入る所）に出す。下のデバッグ行だけだと気づかれなかった（2026-11-21 現地準備で Akira さん） */}
+          {/* Take Control が断られたら、理由をここ（目に入る所）に出す。下のデバッグ行だけだと気づかれなかった */}
           {box?.denied
             ? box.deniedReason === 'not_allowed'
               ? 'This device is not on the node’s allow list. Ask the admin to add it.'
@@ -325,7 +325,7 @@ export function App() {
             : box?.status?.holder
               ? 'Another device is in control. Press Take Control to operate the lights.'
               : 'Press Take Control to operate the lights.'}
-          {/* 右上の Take Control を指す矢印（2026-11-21 Akira さんの指示） */}
+          {/* 右上の Take Control を指す矢印 */}
           <svg className="control-note-arrow" viewBox="0 0 12 12" width="13" height="13" aria-hidden="true">
             <path d="M3 9 9 3M4.5 3H9v4.5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
@@ -339,7 +339,7 @@ export function App() {
         {(wide3d || view3d) && (
           <div className={import.meta.env.MODE !== 'box' && !wide3d ? 'v3d-frame v3d-tabs' : 'v3d-frame'}>
             {/* タブで Setup を選べる所では、3D の Setup ボタンを CSS で隠す（Studio3D に引数を足すと箱のビルドが大きくなった） */}
-            {/* 2 画面（横に 2 つ並ぶ）では、Setup は 3D と入れ替わる（2026-11-22 Akira さん）。天井図はそのまま見える。箱は容量のため前のまま */}
+            {/* 2 画面（横に 2 つ並ぶ）では、Setup は 3D と入れ替わる。天井図はそのまま見える。箱は容量のため前のまま */}
             {import.meta.env.MODE !== 'box' && wide3d && setup ? (
               <div className="studio-cover v3d-setup-pane">
                 <StudioSetup patch={patch} onClose={() => sceneStore.setSetup(false)} />
@@ -352,7 +352,7 @@ export function App() {
         {!wide3d && (
           <div className="v3d-switch" role="tablist" aria-label="Studio view">
             <button role="tab" aria-selected={!view3d && !(import.meta.env.MODE !== 'box' && !wide3d && setup)} className={view3d || (import.meta.env.MODE !== 'box' && !wide3d && setup) ? '' : 'on'} onClick={() => (import.meta.env.MODE !== 'box' && !wide3d ? pick(false, false) : setView3d(false))}>
-              {/* 天井図のタブ名は Fixtures（2026-11-22 Akira さん） */}
+              {/* 天井図のタブ名は Fixtures */}
               Fixtures
             </button>
             <button role="tab" aria-selected={view3d && !(import.meta.env.MODE !== 'box' && !wide3d && setup)} className={view3d && !(import.meta.env.MODE !== 'box' && !wide3d && setup) ? 'on' : ''} onClick={() => (import.meta.env.MODE !== 'box' && !wide3d ? pick(true, false) : setView3d(true))}>
@@ -389,10 +389,10 @@ export function App() {
             Timeline
           </button>
           <button role="tab" aria-selected={mode === 'music'} className={mode === 'music' ? 'on' : ''} onClick={() => setMode('music')} title="Make a timeline from music with Claude">
-            {/* タブ名は Music Analysis（2026-11-22 Akira さんがカードで選択）。箱も同じ（ロゴの絵と使わない CSS を削って容量を空けた） */}
+            {/* タブ名は Music Analysis。箱も同じ（ロゴの絵と使わない CSS を削って容量を空けた） */}
             Music Analysis
           </button>
-          {/* 並べ方のアイコンは線ではなく塗りつぶしの矩形（2026-11-21 Akira さんの指示） */}
+          {/* 並べ方のアイコンは線ではなく塗りつぶしの矩形 */}
           {mode === 'timeline' && wideWork && (
             <div className="tl-layout" role="group" aria-label="Timeline layout">
               <button className={tlStack ? '' : 'on'} aria-pressed={!tlStack} onClick={() => setTlLayout(false)} title="Side by side" aria-label="Side by side">
@@ -486,7 +486,7 @@ export function App() {
       )}
 
       {state.fullOn && !state.blackout && (
-        // Work Light 中も Blackout と同じく、画面の真ん中で点滅させ、ほかの操作は止める（押すと押す前に戻す。2026-11-21 Akira さんの指示）
+        // Work Light 中も Blackout と同じく、画面の真ん中で点滅させ、ほかの操作は止める
         <div className="blackout-overlay" role="alertdialog" aria-label="Work Light">
           <button className="blackout-center worklight-center" onClick={() => send({ type: 'allOn' })} autoFocus>
             <span className="blackout-title">Work Light</span>

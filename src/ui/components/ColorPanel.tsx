@@ -4,7 +4,7 @@ import { hueToRgb, lookToDisplayRgb, type Look } from '../../engine/color.js';
 import { ColorWheel } from './ColorWheel';
 import { cssColor, displayRgb } from './colors';
 
-// スライダーの溝の色（2026-11-21 Akira さんの指示: Hue と同じく、バーそのものに値の色を付ける）
+// スライダーの溝の色
 /** 色温度: Swatches の白と同じ見え方で 2800 K → 6500 K */
 const CCT_STOPS = [2800, 3200, 3700, 4300, 5000, 5600, 6500];
 const cctTrack = `linear-gradient(to right, ${CCT_STOPS.map((k) => `${cssColor(displayRgb({ sat: 0, hue: 0, cct: k }))} ${(((k - 2800) / 3700) * 100).toFixed(1)}%`).join(', ')})`;
@@ -99,7 +99,7 @@ const WHEEL_SIDE_BY_SIDE = 372;
 const WHEEL_MIN = 214;
 const SWATCH_MIN = 200;
 
-/** 数字をクリック（タップ）すると、その場で数値を打ち込める。Enter か欄の外で決定、Esc で取り消し（2026-11-21 Akira さんの指示、ダブルクリックではなくクリック） */
+/** 数字をクリック（タップ）すると、その場で数値を打ち込める。Enter か欄の外で決定、Esc で取り消し */
 function NumField({ value, unit, min, max, wrap, onCommit, label }: { value: number; unit: string; min: number; max: number; wrap?: boolean; onCommit: (v: number) => void; label: string }) {
   const [edit, setEdit] = useState<string | null>(null);
   const done = useRef(false);
@@ -155,7 +155,7 @@ function NumField({ value, unit, min, max, wrap, onCommit, label }: { value: num
 
 export function ColorPanel({ look, onChange, split = false, colorScope = 'all', whiteOnlyName = '' }: Props) {
   const [wheel, setWheel] = useState(false);
-  // Effects のタブ（Swatches・Wheel の横。2026-11-21 Akira さんが C 案を選択）
+  // Effects のタブ
   const [fxTab, setFxTab] = useState(false);
   const fxMark = look.fx ? <span className="fx-dot" aria-label="effect on" /> : null;
   const fxPanel = <EffectsPanel look={look} onChange={onChange} colorless={colorScope === 'none'} />;
@@ -188,7 +188,7 @@ export function ColorPanel({ look, onChange, split = false, colorScope = 'all', 
     return () => ro.disconnect();
   }, [split, wide]);
   // Manual と Timeline の切り替えなどで枠の幅が変わったとき、ResizeObserver（描いたあと）を待つと 1 フレーム古い大きさで出るので、
-  // 描く前にも幅を読む（2026-11-21 Akira さんの指摘「時間差で幅が変わる」）。同じ値なら描き直さない
+  // 描く前にも幅を読む。同じ値なら描き直さない
   useLayoutEffect(() => {
     const el = splitRef.current?.querySelector('.wheel-side') as HTMLElement | null;
     if (!el) return;
@@ -234,7 +234,7 @@ export function ColorPanel({ look, onChange, split = false, colorScope = 'all', 
         <input type="range" min={2800} max={6500} step={50} value={look.cct} aria-label="Color Temperature" onChange={(e) => onChange({ cct: Number(e.target.value) })} style={{ '--track': cctTrack, '--thumb': cssColor(displayRgb({ sat: 0, hue: 0, cct: look.cct })) } as CSSProperties} />
         <NumField value={look.cct} unit=" K" min={2800} max={6500} label="Color Temperature (K)" onCommit={(v) => onChange({ cct: Math.round(v / 50) * 50 })} />
       </div>
-      {/* 白のグリーン／マゼンタ補正（2026-11-21 Akira さん選択）。-100 = グリーン、0 = なし、+100 = マゼンタ。0 のボタンで戻す */}
+      {/* 白のグリーン／マゼンタ補正。-100 = グリーン、0 = なし、+100 = マゼンタ。0 のボタンで戻す */}
       <div className="detail-row">
         <span>
           Tint

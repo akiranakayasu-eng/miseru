@@ -3,7 +3,7 @@ import { loadApiKey, saveApiKey, showModels, type ShowModelId } from './claudeSh
 
 /**
  * Claude API の設定（キー・覚えるか・モデル）。設定画面と Music タブの両方から読むので、画面の外に置く。
- * 2026-11-22 Akira さんの指示で、キーを入れる場所を Music から右上の設定画面へ移した。
+ * キーを入れる場所は設定画面。
  */
 const MODEL_KEY = 'miseru.musicModel';
 

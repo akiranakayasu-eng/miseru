@@ -3,9 +3,9 @@ import type { Patch } from './show.js';
 /**
  * 都立大 撮影スタジオの常設パッチ（Universe 1、68ch）。
  * 出典: https://lecture.nakayasu.com/ja/docs/photo-studio/
- * 仮想スタジオの配置は天井図（2026-11-19 Akira さん提供、上が背景）の位置・形・番号に合わせた。
+ * 仮想スタジオの配置は天井図の位置・形・番号に合わせた。
  * 部屋は天井図の 952 × 556 の枠で、位置と大きさはその割合。
- * 3 の高さは画面の並びに合わせて 7 と 5 の中間に置いた（2026-11-20 Akira さん指定）。
+ * 3 の高さは画面の並びに合わせて 7 と 5 の中間に置いた。
  */
 const W = 952;
 const H = 556;
@@ -32,8 +32,8 @@ export const tmuPhotoStudio: Patch = {
 };
 
 /**
- * 床置きの白 4 灯（STAGE EVOLUTION PAR100CW、1ch モード＝明るさだけ、DMX 101〜104。Akira さん確定）。
- * 天井図の四隅に置く（縦は天井の上の段・下の段にそろえ、横は外側に 1 列ずつ）。Admin で「床置き 4 灯」を入れたときだけ足す（2026-11-21 Akira さんの指示: 学生には使わせない）。
+ * 床置きの白 4 灯（STAGE EVOLUTION PAR100CW、1ch モード＝明るさだけ、DMX 101〜104）。
+ * 天井図の四隅に置く（縦は天井の上の段・下の段にそろえ、横は外側に 1 列ずつ）。Admin で「床置き 4 灯」を入れたときだけ足す。
  */
 const FLOOR = 'dimmer-1ch';
 export const floorPars: Patch['lights'] = [

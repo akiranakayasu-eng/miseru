@@ -41,7 +41,7 @@ export interface ShowState {
   master: number;
   /** 全消灯中か */
   blackout: boolean;
-  /** Full On（作業灯）を押す前の状態。Full On 中だけある。もう一度押すとこれに戻す（2026-11-21 Akira さんの指示） */
+  /** Full On（作業灯）を押す前の状態。Full On 中だけある。もう一度押すとこれに戻す */
   fullOn?: { looks: Record<string, Look>; master: number; blackout: boolean } | null;
 }
 
@@ -98,7 +98,7 @@ export function applyCommand(patch: Patch, state: ShowState, cmd: ShowCommand): 
         const v = cmd.look[k];
         if (typeof v === 'number' && Number.isFinite(v)) given[k] = v;
       }
-      // 演出: fx に null を送ると外し、正しい形なら付ける（2026-11-21）
+      // 演出: fx に null を送ると外し、正しい形なら付ける
       const fxGiven = 'fx' in cmd.look ? (cmd.look.fx === null ? null : sanitizeFx(cmd.look.fx)) : undefined;
       for (const id of cmd.ids) {
         if (!looks[id]) continue;
@@ -115,17 +115,17 @@ export function applyCommand(patch: Patch, state: ShowState, cmd: ShowCommand): 
     case 'master':
       return typeof cmd.value === 'number' && Number.isFinite(cmd.value) ? { ...state, master: clamp01(cmd.value) } : state;
     case 'blackout':
-      // Work Light → Blackout → 解除 のときは、Work Light にも戻さず、Work Light の前の色で点いた状態に戻す（2026-11-21 Akira さんの指示「逆の押し順も同じ」）
-      // Blackout と Work Light は同時に入らない（Restore が 2 つ出ないように。2026-11-21 Akira さんの指示）。
+      // Work Light → Blackout → 解除 のときは、Work Light にも戻さず、Work Light の前の色で点いた状態に戻す
+      // Blackout と Work Light は同時に入らない。
       // Work Light 中に Blackout を押したら、Work Light をやめて押す前の色に戻したうえで全消灯する
       if (state.fullOn)
         return { ...state, looks: { ...state.looks, ...state.fullOn.looks }, master: state.fullOn.master, blackout: cmd.on === true, fullOn: null };
       return { ...state, blackout: cmd.on === true };
     case 'allOn': {
       const looks = { ...state.looks };
-      // 作業灯・点検用: 全部の照明を 100% の 5600K の白にし、Blackout とマスターも戻す（2026-11-21 Akira さん選択。前は消えている照明だけを点けていた）
-      // Full On 中にもう一度押すと、押す前の状態に戻す（2026-11-21 Akira さんの指示）
-      // Blackout は戻さない（Blackout → Work Light → Work Light で、Blackout の前の色で点いた状態に戻す。2026-11-21 Akira さんの指示）
+      // 作業灯・点検用: 全部の照明を 100% の 5600K の白にし、Blackout とマスターも戻す
+      // Full On 中にもう一度押すと、押す前の状態に戻す
+      // Blackout は戻さない
       if (state.fullOn) return { ...state, looks: { ...looks, ...state.fullOn.looks }, master: state.fullOn.master, blackout: false, fullOn: null };
       const saved = { looks: state.looks, master: state.master, blackout: state.blackout };
       for (const id of Object.keys(looks)) looks[id] = { ...looks[id], intensity: 1, sat: 0, cct: 5600, tint: 0, fx: null };
