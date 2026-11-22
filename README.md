@@ -74,7 +74,7 @@ npm run box:sim -- --port 8081 --pin 0000 --dir dist/box --artnet-in
 
 | 項目 | 意味 |
 | --- | --- |
-| `patch` | 使うパッチ。いまは `tmu-photo-studio`（都立大 撮影スタジオ、7 台・68ch）のみ |
+| `patch` | 使うパッチ。`tmu-photo-studio`（都立大 撮影スタジオ、天井の 7 台・68ch）か、床置きの白 4 灯を足した `tmu-photo-studio-floor` |
 | `artnet.host` | Art-Net の送信先（ODE の IP）。空なら送らない |
 | `artnet.universe` | Art-Net のユニバース番号（0 始まり） |
 | `sacn.enabled` | true にすると sACN（E1.31）も送る。Art-Net と同じ内容 |

@@ -1,5 +1,5 @@
-// miseru（ブラウザ）と箱（自作 ODE）のあいだの取り決め。仕様 v0:
-// claude-shared-docs の handoffs/2026-10-25_lighting-system__to__air-kicad_自作ODEのWebSocket仕様v0.md
+// miseru（ブラウザ）と箱（自作 ODE）のあいだの取り決め（WebSocket の仕様 v1.1）。
+// ロックの規則は core.ts、受け入れ試験は check.ts（npm run box:check）。
 
 export const FRAME_TYPE_DMX = 0x01;
 export const DMX_SLOTS = 512;

@@ -32,7 +32,7 @@ export const tmuPhotoStudio: Patch = {
 };
 
 /**
- * 床置きの白 4 灯（STAGE EVOLUTION PAR100CW、1ch モード＝明るさだけ、DMX 101〜104。Akira さん確定、スタジオ資料 projects/photo-studio）。
+ * 床置きの白 4 灯（STAGE EVOLUTION PAR100CW、1ch モード＝明るさだけ、DMX 101〜104。Akira さん確定）。
  * 天井図の四隅に置く（縦は天井の上の段・下の段にそろえ、横は外側に 1 列ずつ）。Admin で「床置き 4 灯」を入れたときだけ足す（2026-11-21 Akira さんの指示: 学生には使わせない）。
  */
 const FLOOR = 'dimmer-1ch';
