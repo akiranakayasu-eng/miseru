@@ -1,0 +1,42 @@
+{
+  "name": "miseru-lighting",
+  "version": "0.2.0-dev",
+  "description": "小学生でも使える、5〜20灯向けのオープンソース照明制御アプリ",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "concurrently -k -n server,ui \"npm:dev:server\" \"npm:dev:ui\"",
+    "dev:server": "tsx watch src/server/main.ts",
+    "dev:ui": "vite",
+    "build": "vite build && tsc -p tsconfig.server.json",
+    "start": "node dist/server/server/main.js",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit -p tsconfig.json && tsc --noEmit -p tsconfig.server.json",
+    "build:demo": "vite build --mode demo --outDir ../../dist/demo --base ./ && node scripts/inline-demo.mjs",
+    "build:web": "vite build --mode web --outDir ../../dist/web --base ./ && node scripts/inline-demo.mjs web",
+    "build:box": "vite build --mode box --outDir ../../dist/box --base ./",
+    "box:sim": "tsx src/box/sim.ts",
+    "box:check": "tsx src/box/check.ts"
+  },
+  "dependencies": {
+    "ws": "^8.18.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@types/ws": "^8.5.13",
+    "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "tsx": "^4.19.2",
+    "typescript": "^5.6.3",
+    "vite": "^5.4.11",
+    "vitest": "^2.1.8"
+  }
+}

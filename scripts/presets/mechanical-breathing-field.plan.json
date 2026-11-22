@@ -1,0 +1,419 @@
+{
+ "concept": "Lights that breathe like a machine: slow teal inhales and exhales, cold white sparks on the hits, a stronger pulse in the peaks, and a last exhale to black.",
+ "cues": [
+  {
+   "start": 0,
+   "end": 16,
+   "label": "First breath",
+   "lights": [
+    "arri1",
+    "arri2",
+    "arri3",
+    "diva1",
+    "diva2",
+    "diva3",
+    "diva4"
+   ],
+   "pattern": "fade",
+   "stepBeats": 1,
+   "colors": [
+    {
+     "intensity": 0,
+     "sat": 0,
+     "hue": 0,
+     "cct": 5600
+    },
+    {
+     "intensity": 0.35,
+     "sat": 0.6,
+     "hue": 175,
+     "cct": 5600
+    },
+    {
+     "intensity": 0.15,
+     "sat": 0.6,
+     "hue": 175,
+     "cct": 5600
+    }
+   ],
+   "low": 0.2,
+   "curve": "ease-in-out",
+   "order": "number",
+   "density": 0.5,
+   "fadeIn": 0
+  },
+  {
+   "start": 16,
+   "end": 58,
+   "label": "Breathing",
+   "lights": [
+    "arri1",
+    "arri2",
+    "arri3",
+    "diva1",
+    "diva2",
+    "diva3",
+    "diva4"
+   ],
+   "pattern": "chase",
+   "stepBeats": 8,
+   "colors": [
+    {
+     "intensity": 0.6,
+     "sat": 0.6,
+     "hue": 175,
+     "cct": 5600
+    }
+   ],
+   "low": 0.2,
+   "curve": "ease-in-out",
+   "order": "center-out",
+   "density": 0.5,
+   "fadeIn": 0
+  },
+  {
+   "start": 58,
+   "end": 80,
+   "label": "Gears turn",
+   "lights": [
+    "arri1",
+    "arri2",
+    "arri3",
+    "diva1",
+    "diva2",
+    "diva3",
+    "diva4"
+   ],
+   "pattern": "chase",
+   "stepBeats": 4,
+   "colors": [
+    {
+     "intensity": 0.7,
+     "sat": 0.7,
+     "hue": 190,
+     "cct": 5600
+    }
+   ],
+   "low": 0.15,
+   "curve": "ease-in-out",
+   "order": "left-to-right",
+   "density": 0.5,
+   "fadeIn": 0
+  },
+  {
+   "start": 80,
+   "end": 88,
+   "label": "Pause",
+   "lights": [
+    "arri1",
+    "arri2",
+    "arri3",
+    "diva1",
+    "diva2",
+    "diva3",
+    "diva4"
+   ],
+   "pattern": "fade",
+   "stepBeats": 1,
+   "colors": [
+    {
+     "intensity": 0.4,
+     "sat": 0.6,
+     "hue": 175,
+     "cct": 5600
+    },
+    {
+     "intensity": 0.2,
+     "sat": 0.6,
+     "hue": 175,
+     "cct": 5600
+    }
+   ],
+   "low": 0.2,
+   "curve": "linear",
+   "order": "number",
+   "density": 0.5,
+   "fadeIn": 0
+  },
+  {
+   "start": 88,
+   "end": 104,
+   "label": "Machine peak",
+   "lights": [
+    "arri1",
+    "arri2",
+    "arri3",
+    "diva1",
+    "diva2",
+    "diva3",
+    "diva4"
+   ],
+   "pattern": "pulse",
+   "stepBeats": 4,
+   "colors": [
+    {
+     "intensity": 0.9,
+     "sat": 0.7,
+     "hue": 180,
+     "cct": 5600
+    },
+    {
+     "intensity": 0.9,
+     "sat": 0,
+     "hue": 0,
+     "cct": 8000
+    }
+   ],
+   "low": 0.3,
+   "curve": "ease-out",
+   "order": "number",
+   "density": 0.5,
+   "fadeIn": 0
+  },
+  {
+   "start": 104,
+   "end": 120,
+   "label": "Cooling",
+   "lights": [
+    "arri1",
+    "arri2",
+    "arri3",
+    "diva1",
+    "diva2",
+    "diva3",
+    "diva4"
+   ],
+   "pattern": "fade",
+   "stepBeats": 1,
+   "colors": [
+    {
+     "intensity": 0.6,
+     "sat": 0.6,
+     "hue": 190,
+     "cct": 5600
+    },
+    {
+     "intensity": 0.35,
+     "sat": 0.5,
+     "hue": 210,
+     "cct": 5600
+    }
+   ],
+   "low": 0.2,
+   "curve": "ease-in-out",
+   "order": "number",
+   "density": 0.5,
+   "fadeIn": 2
+  },
+  {
+   "start": 120,
+   "end": 168,
+   "label": "Steady breath",
+   "lights": [
+    "arri1",
+    "arri2",
+    "arri3",
+    "diva1",
+    "diva2",
+    "diva3",
+    "diva4"
+   ],
+   "pattern": "alternate",
+   "stepBeats": 8,
+   "colors": [
+    {
+     "intensity": 0.6,
+     "sat": 0.6,
+     "hue": 175,
+     "cct": 5600
+    },
+    {
+     "intensity": 0.6,
+     "sat": 0.5,
+     "hue": 200,
+     "cct": 5600
+    }
+   ],
+   "low": 0.25,
+   "curve": "ease-in-out",
+   "order": "left-to-right",
+   "density": 0.5,
+   "fadeIn": 0
+  },
+  {
+   "start": 168,
+   "end": 176,
+   "label": "Hold breath",
+   "lights": [
+    "arri1",
+    "arri2",
+    "arri3",
+    "diva1",
+    "diva2",
+    "diva3",
+    "diva4"
+   ],
+   "pattern": "fade",
+   "stepBeats": 1,
+   "colors": [
+    {
+     "intensity": 0.4,
+     "sat": 0.5,
+     "hue": 200,
+     "cct": 5600
+    },
+    {
+     "intensity": 0.12,
+     "sat": 0.5,
+     "hue": 200,
+     "cct": 5600
+    }
+   ],
+   "low": 0.2,
+   "curve": "linear",
+   "order": "number",
+   "density": 0.5,
+   "fadeIn": 0
+  },
+  {
+   "start": 176,
+   "end": 198,
+   "label": "Second peak",
+   "lights": [
+    "arri1",
+    "arri2",
+    "arri3",
+    "diva1",
+    "diva2",
+    "diva3",
+    "diva4"
+   ],
+   "pattern": "pulse",
+   "stepBeats": 4,
+   "colors": [
+    {
+     "intensity": 1,
+     "sat": 0.75,
+     "hue": 180,
+     "cct": 5600
+    },
+    {
+     "intensity": 1,
+     "sat": 0,
+     "hue": 0,
+     "cct": 8000
+    },
+    {
+     "intensity": 1,
+     "sat": 0.7,
+     "hue": 160,
+     "cct": 5600
+    }
+   ],
+   "low": 0.3,
+   "curve": "ease-out",
+   "order": "center-out",
+   "density": 0.5,
+   "fadeIn": 0
+  },
+  {
+   "start": 198,
+   "end": 208,
+   "label": "Break",
+   "lights": [
+    "arri1",
+    "arri2",
+    "arri3",
+    "diva1",
+    "diva2",
+    "diva3",
+    "diva4"
+   ],
+   "pattern": "static",
+   "stepBeats": 1,
+   "colors": [
+    {
+     "intensity": 0.2,
+     "sat": 0.6,
+     "hue": 210,
+     "cct": 5600
+    }
+   ],
+   "low": 0.2,
+   "curve": "linear",
+   "order": "number",
+   "density": 0.5,
+   "fadeIn": 1
+  },
+  {
+   "start": 208,
+   "end": 216,
+   "label": "Last push",
+   "lights": [
+    "arri1",
+    "arri2",
+    "arri3",
+    "diva1",
+    "diva2",
+    "diva3",
+    "diva4"
+   ],
+   "pattern": "random",
+   "stepBeats": 2,
+   "colors": [
+    {
+     "intensity": 1,
+     "sat": 0.7,
+     "hue": 180,
+     "cct": 5600
+    },
+    {
+     "intensity": 1,
+     "sat": 0,
+     "hue": 0,
+     "cct": 8000
+    }
+   ],
+   "low": 0.2,
+   "curve": "ease-out",
+   "order": "number",
+   "density": 0.5,
+   "fadeIn": 0
+  },
+  {
+   "start": 216,
+   "end": 224.48,
+   "label": "Exhale",
+   "lights": [
+    "arri1",
+    "arri2",
+    "arri3",
+    "diva1",
+    "diva2",
+    "diva3",
+    "diva4"
+   ],
+   "pattern": "fade",
+   "stepBeats": 1,
+   "colors": [
+    {
+     "intensity": 0.4,
+     "sat": 0.6,
+     "hue": 180,
+     "cct": 5600
+    },
+    {
+     "intensity": 0,
+     "sat": 0,
+     "hue": 0,
+     "cct": 5600
+    }
+   ],
+   "low": 0.2,
+   "curve": "ease-out",
+   "order": "number",
+   "density": 0.5,
+   "fadeIn": 0
+  }
+ ]
+}

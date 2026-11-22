@@ -1,0 +1,7 @@
+{
+  "patch": "tmu-photo-studio",
+  "http": { "host": "0.0.0.0", "port": 8080 },
+  "artnet": { "host": "192.0.2.222", "universe": 0 },
+  "requirePairing": true,
+  "dataDir": "data"
+}

@@ -1,0 +1,114 @@
+# Slow Circuit Drift
+
+<fixtures>
+id | number | name | group | position x,y (0-1) | shape | color capability
+arri1 | 1 | ARRI L7-C | ARRI L7-C | 0.69,0.78 | round | full color (hue/sat), tunable white 2800-10000 K
+arri2 | 2 | ARRI L7-C | ARRI L7-C | 0.31,0.78 | round | full color (hue/sat), tunable white 2800-10000 K
+arri3 | 3 | ARRI L7-C | ARRI L7-C | 0.50,0.39 | round | full color (hue/sat), tunable white 2800-10000 K
+diva1 | 4 | Diva-Lite 31 | Diva-Lite 31 | 0.79,0.54 | panel | full color (hue/sat), tunable white 2500-9900 K
+diva2 | 5 | Diva-Lite 31 | Diva-Lite 31 | 0.21,0.54 | panel | full color (hue/sat), tunable white 2500-9900 K
+diva3 | 6 | Diva-Lite 31 | Diva-Lite 31 | 0.71,0.23 | panel | full color (hue/sat), tunable white 2500-9900 K
+diva4 | 7 | Diva-Lite 31 | Diva-Lite 31 | 0.29,0.23 | panel | full color (hue/sat), tunable white 2500-9900 K
+</fixtures>
+
+<music_analysis>
+duration: 167.88 s
+tempo: 110 BPM (confidence 0.48), beat = 0.545 s, bar = 2.182 s (4/4 assumed), first downbeat at 0.313 s; automatic detection, may be half or double the felt tempo
+key: D minor (confidence 0.66)
+
+sections (detected from changes in loudness, spectrum and hits; hint is only a guess):
+  1. 0-6.86 s, rows 1-4, level 4/9, rising, hint intro
+  2. 6.86-54.86 s, rows 5-26, level 6.8/9, rising, hint build
+  3. 54.86-72.31 s, rows 27-34, level 4/9, flat, hint break
+  4. 72.31-107.22 s, rows 35-50, level 8/9, flat, hint peak
+  5. 107.22-124.68 s, rows 51-58, level 6.4/9, rising, hint build
+  6. 124.68-167.88 s, rows 59-78, level 6.8/9, falling, hint outro
+
+bars (all values 0-9, relative within this song):
+  row start_s loud bass lowmid mid highmid high bright hits
+  1 0 0 0 0 0 0 0 9 0
+  2 0.31 4 8 4 1 1 1 2 2
+  3 2.5 6 8 4 0 0 0 0 2
+  4 4.68 6 8 7 0 0 0 0 2
+  5 6.86 6 8 5 2 0 0 0 3
+  6 9.04 7 8 6 6 5 2 0 1
+  7 11.22 7 8 5 5 4 1 0 1
+  8 13.4 7 8 8 4 6 1 0 0
+  9 15.59 6 8 5 4 1 1 0 1
+  10 17.77 1 7 0 2 2 1 0 2
+  11 19.95 6 8 6 3 5 3 0 2
+  12 22.13 7 9 6 1 1 3 0 3
+  13 24.31 7 8 7 2 2 4 0 3
+  14 26.5 7 8 6 2 2 4 0 4
+  15 28.68 7 9 7 3 3 4 0 4
+  16 30.86 8 9 6 4 3 5 0 3
+  17 33.04 7 8 7 3 3 5 0 4
+  18 35.22 7 8 6 5 3 5 0 3
+  19 37.4 8 9 6 5 5 6 0 3
+  20 39.59 8 9 6 4 6 6 0 3
+  21 41.77 7 8 7 3 6 6 0 3
+  22 43.95 7 9 6 6 6 6 0 3
+  23 46.13 8 9 6 5 6 6 0 3
+  24 48.31 7 9 6 4 6 6 0 3
+  25 50.5 7 8 7 3 6 6 0 3
+  26 52.68 7 8 6 3 6 6 0 3
+  27 54.86 5 6 7 5 7 6 0 1
+  28 57.04 4 1 5 6 5 1 0 1
+  29 59.22 3 4 5 4 3 1 0 0
+  30 61.4 4 3 6 6 5 8 0 0
+  31 63.59 5 3 8 4 6 8 0 0
+  32 65.77 6 2 8 7 6 7 0 1
+  33 67.95 5 0 7 7 6 8 1 0
+  34 70.13 0 0 2 4 3 3 0 0
+  35 72.31 6 8 6 6 7 7 0 6
+  36 74.5 7 8 8 6 8 8 0 8
+  37 76.68 8 8 8 6 8 8 0 9
+  38 78.86 8 8 8 6 8 8 0 6
+  39 81.04 8 8 8 7 8 9 0 3
+  40 83.22 7 8 8 7 8 8 0 7
+  41 85.4 8 8 7 6 8 8 0 8
+  42 87.59 8 8 7 6 8 8 0 7
+  43 89.77 9 9 8 8 9 9 0 3
+  44 91.95 8 8 8 8 8 9 0 4
+  45 94.13 8 9 8 8 8 9 0 3
+  46 96.31 9 9 8 9 8 9 0 4
+  47 98.5 9 9 8 9 8 9 0 4
+  48 100.68 9 9 8 9 7 9 1 5
+  49 102.86 8 9 8 7 7 9 0 6
+  50 105.04 8 9 7 5 7 8 0 8
+  51 107.22 7 8 6 5 6 7 0 3
+  52 109.4 6 7 4 6 5 1 0 0
+  53 111.59 5 7 3 3 4 0 0 0
+  54 113.77 5 7 4 5 5 8 0 0
+  55 115.95 7 8 8 6 7 9 0 1
+  56 118.13 8 8 8 8 8 8 0 1
+  57 120.31 8 8 8 6 8 8 0 1
+  58 122.5 5 6 6 6 5 3 0 0
+  59 124.68 7 8 7 4 8 9 0 5
+  60 126.86 8 9 7 5 8 8 0 9
+  61 129.04 8 9 7 4 8 8 0 9
+  62 131.22 8 9 6 5 8 8 0 9
+  63 133.4 8 9 7 4 8 8 0 9
+  64 135.59 8 9 7 4 9 8 0 9
+  65 137.77 8 9 7 4 9 8 0 8
+  66 139.95 8 9 7 6 9 9 0 7
+  67 142.13 9 9 8 6 9 9 0 4
+  68 144.31 9 9 9 6 8 9 0 7
+  69 146.5 9 9 9 5 8 9 0 6
+  70 148.68 9 9 8 6 8 9 0 5
+  71 150.86 8 9 8 6 8 9 0 5
+  72 153.04 8 9 9 6 9 9 0 5
+  73 155.22 9 9 8 5 8 9 0 6
+  74 157.4 8 9 8 5 8 9 0 9
+  75 159.59 4 7 6 4 9 8 0 1
+  76 161.77 0 0 0 0 1 0 0 0
+  77 163.95 0 1 0 0 0 0 0 0
+  78 166.13 0 0 0 0 0 0 0 0
+
+strongest hits (s): 31.95, 35.22, 39.59, 73.4, 75.58, 77.76, 79.95, 125.23, 131.77, 140.23, 149.77, 158.5
+near-silence (s): none
+</music_analysis>
+
+<direction>
+(no special request: design a show that follows the music)
+</direction>

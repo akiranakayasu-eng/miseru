@@ -1,0 +1,676 @@
+{
+ "concept": "Cool blue and cyan circuits drift in slowly and build to a beat-locked swing and sparkle at the peak. After a short drop, a warm amber climb leads into a fast final run and a quick blue fade.",
+ "cues": [
+  {
+   "start": 0,
+   "end": 6.86,
+   "label": "Wake up",
+   "lights": [
+    "arri1",
+    "arri2",
+    "arri3",
+    "diva1",
+    "diva2",
+    "diva3",
+    "diva4"
+   ],
+   "pattern": "fade",
+   "stepBeats": 1,
+   "colors": [
+    {
+     "intensity": 0,
+     "sat": 1,
+     "hue": 225,
+     "cct": 5600
+    },
+    {
+     "intensity": 0,
+     "sat": 1,
+     "hue": 225,
+     "cct": 5600
+    },
+    {
+     "intensity": 0.25,
+     "sat": 1,
+     "hue": 225,
+     "cct": 5600
+    }
+   ],
+   "low": 0,
+   "curve": "ease-in",
+   "order": "number",
+   "density": 0.5,
+   "fadeIn": 0
+  },
+  {
+   "start": 0,
+   "end": 6.86,
+   "label": "Wake up (front off)",
+   "lights": [
+    "arri1",
+    "arri2",
+    "arri3"
+   ],
+   "pattern": "static",
+   "stepBeats": 1,
+   "colors": [
+    {
+     "intensity": 0,
+     "sat": 0,
+     "hue": 0,
+     "cct": 5600
+    }
+   ],
+   "low": 0,
+   "curve": "linear",
+   "order": "number",
+   "density": 0.5,
+   "fadeIn": 0
+  },
+  {
+   "start": 6.86,
+   "end": 19.95,
+   "label": "Slow drift",
+   "lights": [
+    "diva1",
+    "diva2",
+    "diva3",
+    "diva4"
+   ],
+   "pattern": "chase",
+   "stepBeats": 4,
+   "colors": [
+    {
+     "intensity": 0.55,
+     "sat": 0.9,
+     "hue": 190,
+     "cct": 5600
+    },
+    {
+     "intensity": 0.55,
+     "sat": 0.9,
+     "hue": 215,
+     "cct": 5600
+    }
+   ],
+   "low": 0.2,
+   "curve": "ease-in-out",
+   "order": "left-to-right",
+   "density": 0.5,
+   "fadeIn": 2
+  },
+  {
+   "start": 6.86,
+   "end": 19.95,
+   "label": "Low key light",
+   "lights": [
+    "arri1",
+    "arri2",
+    "arri3"
+   ],
+   "pattern": "fade",
+   "stepBeats": 1,
+   "colors": [
+    {
+     "intensity": 0,
+     "sat": 0,
+     "hue": 0,
+     "cct": 6500
+    },
+    {
+     "intensity": 0.25,
+     "sat": 0.2,
+     "hue": 210,
+     "cct": 6500
+    }
+   ],
+   "low": 0,
+   "curve": "ease-in",
+   "order": "number",
+   "density": 0.5,
+   "fadeIn": 0
+  },
+  {
+   "start": 19.95,
+   "end": 35.22,
+   "label": "Rising pulse",
+   "lights": [
+    "diva1",
+    "diva2",
+    "diva3",
+    "diva4"
+   ],
+   "pattern": "pulse",
+   "stepBeats": 2,
+   "colors": [
+    {
+     "intensity": 0.7,
+     "sat": 1,
+     "hue": 250,
+     "cct": 5600
+    },
+    {
+     "intensity": 0.7,
+     "sat": 1,
+     "hue": 210,
+     "cct": 5600
+    }
+   ],
+   "low": 0.3,
+   "curve": "ease-out",
+   "order": "number",
+   "density": 0.5,
+   "fadeIn": 0.5
+  },
+  {
+   "start": 19.95,
+   "end": 35.22,
+   "label": "Key light up",
+   "lights": [
+    "arri1",
+    "arri2",
+    "arri3"
+   ],
+   "pattern": "fade",
+   "stepBeats": 1,
+   "colors": [
+    {
+     "intensity": 0.3,
+     "sat": 0.2,
+     "hue": 210,
+     "cct": 6500
+    },
+    {
+     "intensity": 0.55,
+     "sat": 0.3,
+     "hue": 210,
+     "cct": 6500
+    }
+   ],
+   "low": 0,
+   "curve": "linear",
+   "order": "number",
+   "density": 0.5,
+   "fadeIn": 0
+  },
+  {
+   "start": 35.22,
+   "end": 54.86,
+   "label": "Charge",
+   "lights": [
+    "arri1",
+    "arri2",
+    "arri3",
+    "diva1",
+    "diva2",
+    "diva3",
+    "diva4"
+   ],
+   "pattern": "chase",
+   "stepBeats": 1,
+   "colors": [
+    {
+     "intensity": 0.9,
+     "sat": 1,
+     "hue": 190,
+     "cct": 5600
+    },
+    {
+     "intensity": 0.9,
+     "sat": 1,
+     "hue": 300,
+     "cct": 5600
+    }
+   ],
+   "low": 0.25,
+   "curve": "ease-out",
+   "order": "center-out",
+   "density": 0.5,
+   "fadeIn": 0
+  },
+  {
+   "start": 54.86,
+   "end": 70.13,
+   "label": "Break glow",
+   "lights": [
+    "diva1",
+    "diva2",
+    "diva3",
+    "diva4"
+   ],
+   "pattern": "fade",
+   "stepBeats": 1,
+   "colors": [
+    {
+     "intensity": 0.45,
+     "sat": 0.8,
+     "hue": 290,
+     "cct": 5600
+    },
+    {
+     "intensity": 0.15,
+     "sat": 1,
+     "hue": 230,
+     "cct": 5600
+    }
+   ],
+   "low": 0,
+   "curve": "ease-in-out",
+   "order": "number",
+   "density": 0.5,
+   "fadeIn": 1.5
+  },
+  {
+   "start": 54.86,
+   "end": 70.13,
+   "label": "Break center",
+   "lights": [
+    "arri3"
+   ],
+   "pattern": "static",
+   "stepBeats": 1,
+   "colors": [
+    {
+     "intensity": 0.3,
+     "sat": 0,
+     "hue": 0,
+     "cct": 3200
+    }
+   ],
+   "low": 0,
+   "curve": "linear",
+   "order": "number",
+   "density": 0.5,
+   "fadeIn": 1.5
+  },
+  {
+   "start": 54.86,
+   "end": 70.13,
+   "label": "Break front off",
+   "lights": [
+    "arri1",
+    "arri2"
+   ],
+   "pattern": "fade",
+   "stepBeats": 1,
+   "colors": [
+    {
+     "intensity": 0.4,
+     "sat": 0.3,
+     "hue": 210,
+     "cct": 6500
+    },
+    {
+     "intensity": 0,
+     "sat": 0,
+     "hue": 0,
+     "cct": 6500
+    }
+   ],
+   "low": 0,
+   "curve": "ease-out",
+   "order": "number",
+   "density": 0.5,
+   "fadeIn": 0
+  },
+  {
+   "start": 70.13,
+   "end": 72.31,
+   "label": "Hold breath",
+   "lights": [
+    "arri1",
+    "arri2",
+    "arri3",
+    "diva1",
+    "diva2",
+    "diva3",
+    "diva4"
+   ],
+   "pattern": "fade",
+   "stepBeats": 1,
+   "colors": [
+    {
+     "intensity": 0.15,
+     "sat": 1,
+     "hue": 230,
+     "cct": 5600
+    },
+    {
+     "intensity": 0.03,
+     "sat": 1,
+     "hue": 230,
+     "cct": 5600
+    }
+   ],
+   "low": 0,
+   "curve": "ease-in",
+   "order": "number",
+   "density": 0.5,
+   "fadeIn": 0
+  },
+  {
+   "start": 72.31,
+   "end": 89.77,
+   "label": "Peak swing",
+   "lights": [
+    "arri1",
+    "arri2",
+    "arri3",
+    "diva1",
+    "diva2",
+    "diva3",
+    "diva4"
+   ],
+   "pattern": "alternate",
+   "stepBeats": 1,
+   "colors": [
+    {
+     "intensity": 1,
+     "sat": 1,
+     "hue": 190,
+     "cct": 5600
+    },
+    {
+     "intensity": 1,
+     "sat": 1,
+     "hue": 300,
+     "cct": 5600
+    }
+   ],
+   "low": 0.2,
+   "curve": "hold",
+   "order": "left-to-right",
+   "density": 0.5,
+   "fadeIn": 0
+  },
+  {
+   "start": 89.77,
+   "end": 107.22,
+   "label": "Peak sparkle",
+   "lights": [
+    "arri1",
+    "arri2",
+    "diva1",
+    "diva2",
+    "diva3",
+    "diva4"
+   ],
+   "pattern": "random",
+   "stepBeats": 0.5,
+   "colors": [
+    {
+     "intensity": 1,
+     "sat": 1,
+     "hue": 190,
+     "cct": 5600
+    },
+    {
+     "intensity": 1,
+     "sat": 1,
+     "hue": 270,
+     "cct": 5600
+    },
+    {
+     "intensity": 1,
+     "sat": 0,
+     "hue": 0,
+     "cct": 7000
+    }
+   ],
+   "low": 0.15,
+   "curve": "ease-out",
+   "order": "number",
+   "density": 0.6,
+   "fadeIn": 0
+  },
+  {
+   "start": 89.77,
+   "end": 107.22,
+   "label": "Peak anchor",
+   "lights": [
+    "arri3"
+   ],
+   "pattern": "static",
+   "stepBeats": 1,
+   "colors": [
+    {
+     "intensity": 0.9,
+     "sat": 0,
+     "hue": 0,
+     "cct": 6500
+    }
+   ],
+   "low": 0,
+   "curve": "linear",
+   "order": "number",
+   "density": 0.5,
+   "fadeIn": 0
+  },
+  {
+   "start": 107.22,
+   "end": 113.77,
+   "label": "Drop back",
+   "lights": [
+    "arri1",
+    "arri2",
+    "arri3",
+    "diva1",
+    "diva2",
+    "diva3",
+    "diva4"
+   ],
+   "pattern": "fade",
+   "stepBeats": 1,
+   "colors": [
+    {
+     "intensity": 0.5,
+     "sat": 1,
+     "hue": 230,
+     "cct": 5600
+    },
+    {
+     "intensity": 0.2,
+     "sat": 1,
+     "hue": 230,
+     "cct": 5600
+    }
+   ],
+   "low": 0,
+   "curve": "ease-out",
+   "order": "number",
+   "density": 0.5,
+   "fadeIn": 0.5
+  },
+  {
+   "start": 113.77,
+   "end": 124.68,
+   "label": "Climb",
+   "lights": [
+    "arri1",
+    "arri2",
+    "arri3",
+    "diva1",
+    "diva2",
+    "diva3",
+    "diva4"
+   ],
+   "pattern": "chase",
+   "stepBeats": 1,
+   "colors": [
+    {
+     "intensity": 0.85,
+     "sat": 1,
+     "hue": 35,
+     "cct": 5600
+    },
+    {
+     "intensity": 0.85,
+     "sat": 1,
+     "hue": 20,
+     "cct": 5600
+    }
+   ],
+   "low": 0.1,
+   "curve": "ease-in-out",
+   "order": "back-to-front",
+   "density": 0.5,
+   "fadeIn": 0.5
+  },
+  {
+   "start": 124.68,
+   "end": 142.13,
+   "label": "Final drive color",
+   "lights": [
+    "diva1",
+    "diva2",
+    "diva3",
+    "diva4"
+   ],
+   "pattern": "pulse",
+   "stepBeats": 1,
+   "colors": [
+    {
+     "intensity": 1,
+     "sat": 1,
+     "hue": 300,
+     "cct": 5600
+    },
+    {
+     "intensity": 1,
+     "sat": 1,
+     "hue": 190,
+     "cct": 5600
+    }
+   ],
+   "low": 0.25,
+   "curve": "ease-out",
+   "order": "number",
+   "density": 0.5,
+   "fadeIn": 0
+  },
+  {
+   "start": 124.68,
+   "end": 142.13,
+   "label": "Final drive white",
+   "lights": [
+    "arri1",
+    "arri2",
+    "arri3"
+   ],
+   "pattern": "alternate",
+   "stepBeats": 2,
+   "colors": [
+    {
+     "intensity": 0.8,
+     "sat": 0,
+     "hue": 0,
+     "cct": 5600
+    }
+   ],
+   "low": 0.3,
+   "curve": "hold",
+   "order": "number",
+   "density": 0.5,
+   "fadeIn": 0
+  },
+  {
+   "start": 142.13,
+   "end": 159.59,
+   "label": "Last run",
+   "lights": [
+    "arri1",
+    "arri2",
+    "arri3",
+    "diva1",
+    "diva2",
+    "diva3",
+    "diva4"
+   ],
+   "pattern": "chase",
+   "stepBeats": 0.5,
+   "colors": [
+    {
+     "intensity": 1,
+     "sat": 1,
+     "hue": 250,
+     "cct": 5600
+    },
+    {
+     "intensity": 1,
+     "sat": 1,
+     "hue": 190,
+     "cct": 5600
+    }
+   ],
+   "low": 0.3,
+   "curve": "ease-out",
+   "order": "center-out",
+   "density": 0.5,
+   "fadeIn": 0
+  },
+  {
+   "start": 159.59,
+   "end": 163.95,
+   "label": "Fade out",
+   "lights": [
+    "arri1",
+    "arri2",
+    "arri3",
+    "diva1",
+    "diva2",
+    "diva3",
+    "diva4"
+   ],
+   "pattern": "fade",
+   "stepBeats": 1,
+   "colors": [
+    {
+     "intensity": 0.4,
+     "sat": 1,
+     "hue": 225,
+     "cct": 5600
+    },
+    {
+     "intensity": 0,
+     "sat": 1,
+     "hue": 225,
+     "cct": 5600
+    }
+   ],
+   "low": 0,
+   "curve": "ease-out",
+   "order": "number",
+   "density": 0.5,
+   "fadeIn": 0.3
+  },
+  {
+   "start": 163.95,
+   "end": 167.88,
+   "label": "Dark",
+   "lights": [
+    "arri1",
+    "arri2",
+    "arri3",
+    "diva1",
+    "diva2",
+    "diva3",
+    "diva4"
+   ],
+   "pattern": "static",
+   "stepBeats": 1,
+   "colors": [
+    {
+     "intensity": 0,
+     "sat": 1,
+     "hue": 225,
+     "cct": 5600
+    }
+   ],
+   "low": 0,
+   "curve": "linear",
+   "order": "number",
+   "density": 0.5,
+   "fadeIn": 0
+  }
+ ]
+}
